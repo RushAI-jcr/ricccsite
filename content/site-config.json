@@ -1,0 +1,20 @@
+{
+  "lab_name": "RICCC Lab",
+  "full_name": "Rush Interdisciplinary Consortium for Critical Care Trials and Data Science",
+  "tagline": "Advancing Critical Care Through Data Science",
+  "pubmed_query": "Rush University[Affiliation] AND (critical care OR ICU OR CLIF)",
+  "pi": {
+    "name": "TBD",
+    "credentials": "MD",
+    "title": "Associate Professor",
+    "email": "TBD@rush.edu"
+  },
+  "links": {
+    "google_scholar": "",
+    "my_ncbi": "",
+    "github": "https://github.com/RushAI-jcr",
+    "twitter": "",
+    "bluesky": "",
+    "clif": "https://clif-icu.com"
+  }
+}

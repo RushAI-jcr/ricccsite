@@ -1,0 +1,22 @@
+{
+  "spotlights": [
+    {
+      "title": "Multicenter Validation of a Machine Learning Model for ICU Mortality Prediction",
+      "journal": "Critical Care Medicine",
+      "year": "2025",
+      "authors": "Lab PI, Smith J, Johnson K, et al.",
+      "doi": "10.1097/example",
+      "pmid": "",
+      "image": ""
+    },
+    {
+      "title": "Federated Learning for Clinical Data: Privacy-Preserving Approaches to Multicenter Research",
+      "journal": "Nature Digital Medicine",
+      "year": "2025",
+      "authors": "Lab PI, Chen L, Williams R, et al.",
+      "doi": "10.1038/example",
+      "pmid": "",
+      "image": ""
+    }
+  ]
+}
