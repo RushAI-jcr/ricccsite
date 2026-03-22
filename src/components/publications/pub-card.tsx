@@ -1,7 +1,24 @@
-import { ExternalLink } from "lucide-react";
-import { type Publication } from "@/lib/pubmed";
+"use client";
+
+import { useState } from "react";
+import { ExternalLink, ClipboardCopy, Check } from "lucide-react";
+import { type Publication } from "@/lib/types";
+import { formatAMA } from "@/lib/cite";
 
 export function PubCard({ pub }: { pub: Publication }) {
+  const [copied, setCopied] = useState(false);
+
+  async function handleCite() {
+    const citation = formatAMA(pub);
+    try {
+      await navigator.clipboard.writeText(citation);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard API not available (non-HTTPS, iframe, etc.)
+    }
+  }
+
   return (
     <div className="bg-white rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between gap-4">
@@ -11,14 +28,14 @@ export function PubCard({ pub }: { pub: Publication }) {
           </h3>
           <p className="text-sm text-rush-mid-gray mb-1">{pub.authors}</p>
           {pub.journal && (
-            <p className="text-sm text-rush-deep-blue font-medium">
+            <p className="text-sm text-rush-teal font-medium">
               {pub.journal} {pub.year && `(${pub.year})`}
             </p>
           )}
         </div>
         {pub.citationCount != null && pub.citationCount > 0 && (
           <div className="shrink-0 text-center">
-            <div className="text-lg font-bold text-rush-indigo">
+            <div className="text-lg font-bold text-rush-green">
               {pub.citationCount}
             </div>
             <div className="text-[10px] text-rush-mid-gray uppercase tracking-wider">
@@ -48,6 +65,16 @@ export function PubCard({ pub }: { pub: Publication }) {
             DOI <ExternalLink className="h-3 w-3" />
           </a>
         )}
+        <button
+          onClick={handleCite}
+          className="inline-flex items-center gap-1 rounded-full bg-rush-light-gray px-3 py-1 text-xs font-medium text-rush-charcoal hover:bg-gray-200 transition-colors"
+        >
+          {copied ? (
+            <>Copied! <Check className="h-3 w-3" /></>
+          ) : (
+            <>Cite <ClipboardCopy className="h-3 w-3" /></>
+          )}
+        </button>
       </div>
     </div>
   );

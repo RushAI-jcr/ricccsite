@@ -26,7 +26,7 @@ export function Header() {
   if (pathname?.startsWith("/admin")) return null;
 
   return (
-    <header className="bg-rush-indigo text-white sticky top-0 z-50">
+    <header className="bg-rush-green text-white sticky top-0 z-50">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo + Name */}
@@ -74,7 +74,7 @@ export function Header() {
               <Menu className="h-6 w-6" />
               <span className="sr-only">Open menu</span>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-rush-indigo text-white border-rush-indigo">
+            <SheetContent side="right" className="bg-rush-green text-white border-rush-green">
               <SheetTitle className="text-white">{siteConfig.name}</SheetTitle>
               <nav className="flex flex-col gap-2 mt-6">
                 {navItems.map((item) => {

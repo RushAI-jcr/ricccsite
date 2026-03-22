@@ -10,7 +10,7 @@ const cspHeader = `
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: blob:;
   font-src 'self' https://fonts.gstatic.com;
-  connect-src 'self' https://va.vercel-analytics.com https://vitals.vercel-insights.com https://eutils.ncbi.nlm.nih.gov https://api.semanticscholar.org;
+  connect-src 'self' https://va.vercel-analytics.com https://vitals.vercel-insights.com https://eutils.ncbi.nlm.nih.gov https://api.semanticscholar.org https://api.openalex.org;
   frame-ancestors 'none';
   base-uri 'self';
   form-action 'self';

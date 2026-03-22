@@ -1,14 +1,16 @@
 import Image from "next/image";
 import { type TeamMember } from "@/lib/team";
 import { ExternalLink } from "lucide-react";
+import { isSafeUrl } from "@/lib/url";
 
 function AcademicLink({ href, label }: { href: string; label: string }) {
+  if (!isSafeUrl(href)) return null;
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-center gap-1 text-sm text-rush-deep-blue hover:underline"
+      className="inline-flex items-center gap-1 text-sm text-rush-teal hover:underline"
     >
       {label}
       <ExternalLink className="h-3 w-3" />
@@ -37,7 +39,7 @@ export function PiBio({ member }: { member: TeamMember }) {
                 className="rounded-xl object-cover"
               />
             ) : (
-              <div className="w-[200px] h-[200px] rounded-xl bg-rush-indigo flex items-center justify-center text-white text-4xl font-bold">
+              <div className="w-[200px] h-[200px] rounded-xl bg-rush-green flex items-center justify-center text-white text-4xl font-bold">
                 {initials}
               </div>
             )}
@@ -47,9 +49,11 @@ export function PiBio({ member }: { member: TeamMember }) {
             <h2 className="text-2xl font-bold text-rush-charcoal mb-1">
               {member.name}
             </h2>
-            <p className="text-rush-deep-blue font-medium mb-1">
-              {member.role}
-            </p>
+            <div className="text-rush-teal font-medium mb-1 space-y-0.5">
+              {member.role.split(" | ").map((title) => (
+                <p key={title}>{title}</p>
+              ))}
+            </div>
             <p className="text-rush-mid-gray text-sm mb-4">{member.email}</p>
 
             {member.bio && (

@@ -1,21 +1,21 @@
 {
   "spotlights": [
     {
-      "title": "Multicenter Validation of a Machine Learning Model for ICU Mortality Prediction",
-      "journal": "Critical Care Medicine",
+      "title": "A Common Longitudinal Intensive Care Unit Data Format (CLIF) to Enable Multi-Institutional Federated Critical Illness Research",
+      "journal": "Intensive Care Medicine",
       "year": "2025",
-      "authors": "Lab PI, Smith J, Johnson K, et al.",
-      "doi": "10.1097/example",
-      "pmid": "",
+      "authors": "Rojas JC, Lyons PG, Chhikara K, Chaudhari V, Bhavani SV, Nour M, Buell KG, et al.",
+      "doi": "10.1007/s00134-025-07848-7",
+      "pmid": "40080116",
       "image": ""
     },
     {
-      "title": "Federated Learning for Clinical Data: Privacy-Preserving Approaches to Multicenter Research",
-      "journal": "Nature Digital Medicine",
-      "year": "2025",
-      "authors": "Lab PI, Chen L, Williams R, et al.",
-      "doi": "10.1038/example",
-      "pmid": "",
+      "title": "Individualized Treatment Effects of Oxygen Targets in Mechanically Ventilated Critically Ill Adults",
+      "journal": "JAMA",
+      "year": "2024",
+      "authors": "Buell KG, Spicer AB, Casey JD, Seitz KP, Qian ET, et al.",
+      "doi": "10.1001/jama.2024.2933",
+      "pmid": "38501205",
       "image": ""
     }
   ]

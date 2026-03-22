@@ -36,7 +36,7 @@ const pathways = [
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-      <h1 className="text-4xl font-bold text-rush-indigo mb-4">
+      <h1 className="text-4xl font-bold text-rush-green mb-4">
         Contact & Join
       </h1>
       <p className="text-rush-mid-gray text-lg mb-12 max-w-2xl">
@@ -55,7 +55,7 @@ export default function ContactPage() {
               key={pathway.title}
               className="bg-white rounded-xl p-8 shadow-sm flex flex-col"
             >
-              <div className="w-12 h-12 rounded-lg bg-rush-deep-blue flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-lg bg-rush-teal flex items-center justify-center mb-4">
                 <Icon className="h-6 w-6 text-white" />
               </div>
               <h2 className="text-xl font-semibold text-rush-charcoal mb-3">
@@ -66,7 +66,7 @@ export default function ContactPage() {
               </p>
               <a
                 href={mailto}
-                className="inline-flex items-center justify-center rounded-lg bg-rush-deep-blue px-4 py-3 text-sm font-medium text-white hover:bg-rush-indigo transition-colors"
+                className="inline-flex items-center justify-center rounded-lg bg-rush-teal px-4 py-3 text-sm font-medium text-white hover:bg-rush-green transition-colors"
               >
                 {pathway.cta}
               </a>

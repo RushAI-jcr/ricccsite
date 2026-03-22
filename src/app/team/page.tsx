@@ -19,7 +19,7 @@ export default function TeamPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-      <h1 className="text-4xl font-bold text-rush-indigo mb-4">Our Team</h1>
+      <h1 className="text-4xl font-bold text-rush-green mb-4">Our Team</h1>
       <p className="text-rush-mid-gray text-lg mb-12 max-w-2xl">
         A multidisciplinary team of clinicians, data scientists, and trainees
         working to advance critical care through computation.
@@ -43,7 +43,7 @@ export default function TeamPage() {
 
       {grouped.alumni.length > 0 && (
         <details className="mb-12">
-          <summary className="text-lg font-semibold text-rush-indigo cursor-pointer mb-4 hover:text-rush-deep-blue">
+          <summary className="text-lg font-semibold text-rush-green cursor-pointer mb-4 hover:text-rush-teal">
             Alumni ({grouped.alumni.length})
           </summary>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">

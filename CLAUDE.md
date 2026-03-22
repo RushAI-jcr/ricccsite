@@ -16,15 +16,17 @@
 - Site config: content/site-config.json (editable via CMS)
 - Photos: public/images/team/ (uploaded via CMS media picker)
 
-## Rush Brand System
-Colors defined as CSS custom properties in globals.css:
-- `rush-indigo` (#1E1869): Nav, hero backgrounds
-- `rush-deep-blue` (#00668E): Primary CTA, links
-- `rush-cerulean` (#54ADD3): Secondary accent — ONLY on dark backgrounds
-- `rush-ivory` (#FFFBEC): Page background
-- `rush-charcoal` (#333333): Body text
-- `rush-mid-gray` (#666666): Secondary text
-- `rush-light-gray` (#F5F5F5): Section alternation
+## Rush Brand System (from Rush Digital Quick Guide)
+Official Rush colors with green as primary, defined in globals.css:
+- `rush-green` (#006332): Growth Green — nav, hero, headings, primary CTAs
+- `rush-teal` (#00A66C): Legacy Green — links, secondary buttons, accents
+- `rush-emerald` (#5FEEA2): Vitality Green — highlights, badges
+- `rush-ivory` (#FFFBEC): Page background (Rush tertiary)
+- `rush-sage` (#DFF9EB): Section alternation (Rush tertiary)
+- `rush-charcoal` (#0C0C0C): Body text (Rush Black)
+- `rush-mid-gray` (#A59F9F): Secondary text (Rush Wash Gray)
+- `rush-umber` (#5F5858): Muted text (Rush Raw Umber)
+- `rush-light-gray` (#EAEAEA): Borders, cards (Rush Gray)
 
 ## Anti-Patterns (DO NOT USE)
 - No symmetric 3-column icon grids

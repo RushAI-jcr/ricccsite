@@ -10,14 +10,21 @@
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
 
-  /* Rush brand colors — direct access via rush-* classes */
-  --color-rush-indigo: #1E1869;
-  --color-rush-deep-blue: #00668E;
-  --color-rush-cerulean: #54ADD3;
+  /* Rush official brand colors (from Rush Digital Quick Guide) */
+  /* Primary */
+  --color-rush-green: #006332;
+  --color-rush-teal: #00A66C;
+  --color-rush-emerald: #5FEEA2;
+  /* Secondary */
+  --color-rush-wash-green: #9AEFC2;
+  --color-rush-umber: #5F5858;
+  /* Tertiary */
+  --color-rush-sage: #DFF9EB;
   --color-rush-ivory: #FFFBEC;
-  --color-rush-charcoal: #333333;
-  --color-rush-light-gray: #F5F5F5;
-  --color-rush-mid-gray: #666666;
+  /* Neutrals */
+  --color-rush-charcoal: #0C0C0C;
+  --color-rush-light-gray: #EAEAEA;
+  --color-rush-mid-gray: #A59F9F;
   --color-rush-white: #FFFFFF;
 
   /* shadcn/ui semantic tokens */
@@ -60,39 +67,39 @@
 }
 
 :root {
-  /* Rush-branded semantic tokens */
+  /* Rush-branded semantic tokens — Growth Green as primary */
   --background: #FFFBEC;       /* Rush Ivory */
-  --foreground: #333333;       /* Rush Charcoal */
+  --foreground: #0C0C0C;       /* Rush Black */
   --card: #FFFFFF;
-  --card-foreground: #333333;
+  --card-foreground: #0C0C0C;
   --popover: #FFFFFF;
-  --popover-foreground: #333333;
-  --primary: #00668E;          /* Rush Deep Blue — CTAs, links */
+  --popover-foreground: #0C0C0C;
+  --primary: #006332;          /* Rush Growth Green — primary CTA */
   --primary-foreground: #FFFFFF;
-  --secondary: #F5F5F5;        /* Rush Light Gray */
-  --secondary-foreground: #333333;
-  --muted: #F5F5F5;
-  --muted-foreground: #666666; /* Rush Mid Gray */
-  --accent: #54ADD3;           /* Rush Cerulean — secondary accent */
-  --accent-foreground: #1E1869;
+  --secondary: #EAEAEA;        /* Rush Gray */
+  --secondary-foreground: #0C0C0C;
+  --muted: #EAEAEA;
+  --muted-foreground: #5F5858; /* Rush Raw Umber */
+  --accent: #00A66C;           /* Rush Legacy Green — secondary accent */
+  --accent-foreground: #FFFFFF;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #E5E5E5;
-  --input: #E5E5E5;
-  --ring: #00668E;             /* Rush Deep Blue */
-  --chart-1: #00668E;
-  --chart-2: #54ADD3;
-  --chart-3: #1E1869;
-  --chart-4: #666666;
-  --chart-5: #333333;
+  --border: #EAEAEA;
+  --input: #EAEAEA;
+  --ring: #006332;             /* Rush Growth Green */
+  --chart-1: #006332;
+  --chart-2: #00A66C;
+  --chart-3: #5FEEA2;
+  --chart-4: #5F5858;
+  --chart-5: #0C0C0C;
   --radius: 0.5rem;
   --sidebar: #FFFBEC;
-  --sidebar-foreground: #333333;
-  --sidebar-primary: #00668E;
+  --sidebar-foreground: #0C0C0C;
+  --sidebar-primary: #006332;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F5F5F5;
-  --sidebar-accent-foreground: #333333;
-  --sidebar-border: #E5E5E5;
-  --sidebar-ring: #00668E;
+  --sidebar-accent: #EAEAEA;
+  --sidebar-accent-foreground: #0C0C0C;
+  --sidebar-border: #EAEAEA;
+  --sidebar-ring: #006332;
 }
 
 @layer base {

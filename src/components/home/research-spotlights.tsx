@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import spotlightData from "../../../content/spotlights.json";
 
@@ -17,16 +18,16 @@ export function ResearchSpotlights() {
   if (spotlights.length === 0) return null;
 
   return (
-    <section className="py-16 lg:py-24 bg-rush-light-gray">
+    <section className="py-16 lg:py-24 bg-rush-sage">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-rush-indigo mb-2">
+        <h2 className="text-3xl font-bold text-rush-green mb-2">
           Research Spotlights
         </h2>
-        <p className="text-rush-mid-gray mb-10">
-          Recent publications from our lab
+        <p className="text-rush-umber mb-10">
+          Featured publications from our lab
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-6">
           {spotlights.map((pub) => {
             const href = pub.doi
               ? `https://doi.org/${pub.doi}`
@@ -40,21 +41,49 @@ export function ResearchSpotlights() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-all"
+                className="group block bg-white rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden"
               >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="min-w-0">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-rush-deep-blue mb-2">
-                      {pub.journal} &middot; {pub.year}
-                    </p>
-                    <h3 className="text-lg font-semibold text-rush-charcoal mb-2 group-hover:text-rush-deep-blue transition-colors leading-snug">
+                <div className="flex flex-col md:flex-row">
+                  {/* Key figure image (if provided) */}
+                  {pub.image && (
+                    <div className="md:w-72 shrink-0 bg-rush-light-gray">
+                      <Image
+                        src={pub.image}
+                        alt={`Key figure from ${pub.title}`}
+                        width={288}
+                        height={200}
+                        className="w-full h-48 md:h-full object-cover"
+                      />
+                    </div>
+                  )}
+
+                  {/* Paper details */}
+                  <div className="flex-1 p-6">
+                    {/* Journal badge */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="inline-flex items-center rounded-full bg-rush-green px-3 py-1 text-xs font-bold text-white uppercase tracking-wider">
+                        {pub.journal}
+                      </span>
+                      <span className="text-sm text-rush-umber">{pub.year}</span>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-rush-charcoal mb-3 group-hover:text-rush-green transition-colors leading-snug">
                       {pub.title}
                     </h3>
-                    <p className="text-sm text-rush-mid-gray">{pub.authors}</p>
+
+                    {/* Authors */}
+                    <p className="text-sm text-rush-umber mb-4 leading-relaxed">
+                      {pub.authors}
+                    </p>
+
+                    {/* DOI link */}
+                    {href && (
+                      <span className="inline-flex items-center gap-1 text-sm font-medium text-rush-teal group-hover:underline">
+                        Read paper <ExternalLink className="h-3.5 w-3.5" />
+                      </span>
+                    )}
                   </div>
-                  {href && (
-                    <ExternalLink className="h-5 w-5 text-rush-mid-gray group-hover:text-rush-deep-blue transition-colors shrink-0 mt-1" />
-                  )}
                 </div>
               </a>
             );

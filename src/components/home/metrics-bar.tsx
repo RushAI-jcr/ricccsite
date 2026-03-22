@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { siteConfig } from "@/lib/config";
 
 interface Metric {
   label: string;
@@ -9,10 +10,10 @@ interface Metric {
 }
 
 const metrics: Metric[] = [
-  { label: "Publications", value: 50, suffix: "+" },
-  { label: "Active Projects", value: 8 },
-  { label: "Team Members", value: 15 },
-  { label: "Founded", value: 2020 },
+  { label: "Publications", value: siteConfig.metrics.publications, suffix: "+" },
+  { label: "Active Projects", value: siteConfig.metrics.activeProjects },
+  { label: "Team Members", value: siteConfig.metrics.teamMembers },
+  { label: "Founded", value: siteConfig.metrics.founded },
 ];
 
 function AnimatedCounter({
@@ -25,15 +26,18 @@ function AnimatedCounter({
   const [count, setCount] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
+  const prefersReducedMotion = useRef(false);
 
   useEffect(() => {
-    // Respect reduced motion
-    const prefersReducedMotion = window.matchMedia(
+    prefersReducedMotion.current = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+  }, []);
 
-    if (prefersReducedMotion) {
-      setCount(target);
+  useEffect(() => {
+    if (prefersReducedMotion.current) {
+      // Skip to final value immediately — no animation needed
+      requestAnimationFrame(() => setCount(target));
       return;
     }
 
@@ -73,7 +77,7 @@ function AnimatedCounter({
 
 export function MetricsBar() {
   return (
-    <section className="bg-rush-deep-blue text-white py-12">
+    <section className="bg-rush-teal text-white py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {metrics.map((metric) => (

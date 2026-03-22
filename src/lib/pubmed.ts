@@ -1,13 +1,4 @@
-export interface Publication {
-  pmid: string;
-  title: string;
-  authors: string;
-  journal: string;
-  year: string;
-  doi: string | null;
-  citationCount?: number;
-  source: "pubmed" | "semantic-scholar" | "both";
-}
+import { type Publication, formatAuthorList } from "./types";
 
 interface PubMedArticle {
   uid: string;
@@ -15,6 +6,9 @@ interface PubMedArticle {
   authors: { name: string }[];
   source: string;
   pubdate: string;
+  volume?: string;
+  issue?: string;
+  pages?: string;
   elocationid?: string;
   articleids: { idtype: string; value: string }[];
 }
@@ -115,14 +109,20 @@ async function fetchByPMIDs(pmids: string[]): Promise<Publication[]> {
           null;
 
         const authorList = article.authors?.map((a) => a.name) ?? [];
-        const authorsStr =
-          authorList.length > 3
-            ? `${authorList.slice(0, 3).join(", ")}, et al.`
-            : authorList.join(", ");
-
         const year = article.pubdate?.split(" ")[0] ?? "";
 
-        return { pmid, title: article.title, authors: authorsStr, journal: article.source, year, doi, source: "pubmed" as const };
+        return {
+          pmid,
+          title: article.title,
+          authors: formatAuthorList(authorList),
+          journal: article.source,
+          year,
+          doi,
+          volume: article.volume || undefined,
+          issue: article.issue || undefined,
+          pages: article.pages || undefined,
+          source: "pubmed" as const,
+        };
       })
       .sort((a, b) => b.year.localeCompare(a.year));
   } catch (error) {

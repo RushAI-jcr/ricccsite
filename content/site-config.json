@@ -1,16 +1,36 @@
 {
-  "lab_name": "RICCC Lab",
+  "lab_name": "RICCC",
   "full_name": "Rush Interdisciplinary Consortium for Critical Care Trials and Data Science",
   "tagline": "Advancing Critical Care Through Data Science",
-  "pubmed_query": "Rush University[Affiliation] AND (critical care OR ICU OR CLIF)",
+  "pubmed_query": "((Rojas JC[Author] AND (Rush University[Affiliation] OR University of Chicago[Affiliation])) OR (Buell Kevin[Author] AND (Rush University[Affiliation] OR University of Chicago[Affiliation] OR Vanderbilt[Affiliation]))) AND English[Language]",
+  "authors": ["Juan Rojas", "Kevin Buell"],
+  "openalex_authors": [
+    { "name": "Juan Rojas", "id": "A5077904660" },
+    { "name": "Kevin Buell", "id": "A5054927341" }
+  ],
   "pi": {
-    "name": "TBD",
-    "credentials": "MD",
+    "name": "Juan C. (J.C.) Rojas",
+    "credentials": "MD, MS",
     "title": "Associate Professor",
-    "email": "TBD@rush.edu"
+    "email": "juan_rojas@rush.edu"
   },
+  "metrics": {
+    "publications": 50,
+    "active_projects": 8,
+    "team_members": 15,
+    "founded": 2020
+  },
+  "exclude_title_patterns": [
+    "drosophila", "tephritidae", "anastrepha", "diptera",
+    "congo", "kinshasa", "apolipoprotein",
+    "htlv", "human t-lymphotropic", "antiretroviral", "loiasis",
+    "tuberculosis", "pulmonary tb", "tb centre", "tb center",
+    "mice model", "mouse model", "rat model", "in vitro", "cell line",
+    "career partnerships", "maternal diseases",
+    "inflammatory bowel disease"
+  ],
   "links": {
-    "google_scholar": "",
+    "google_scholar": "https://scholar.google.com/citations?user=XXHTvWEAAAAJ",
     "my_ncbi": "",
     "github": "https://github.com/RushAI-jcr",
     "twitter": "",

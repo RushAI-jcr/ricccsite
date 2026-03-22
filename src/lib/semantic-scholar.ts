@@ -1,3 +1,5 @@
+import { formatAuthorList } from "./types";
+
 export interface SemanticPaper {
   paperId: string;
   title: string;
@@ -76,15 +78,11 @@ export async function searchAuthorPapers(
       .filter((p) => p.title)
       .map((p) => {
         const authorList = p.authors?.map((a) => a.name) ?? [];
-        const authorsStr =
-          authorList.length > 3
-            ? `${authorList.slice(0, 3).join(", ")}, et al.`
-            : authorList.join(", ");
 
         return {
           paperId: p.paperId,
           title: p.title,
-          authors: authorsStr,
+          authors: formatAuthorList(authorList),
           venue: p.publicationVenue?.name ?? "",
           year: p.year,
           citationCount: p.citationCount ?? 0,

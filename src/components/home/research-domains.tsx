@@ -14,21 +14,21 @@ const domains: Domain[] = [
     description:
       "Leveraging large-scale clinical data to improve patient outcomes through predictive modeling and clinical decision support.",
     icon: Activity,
-    color: "bg-rush-deep-blue",
+    color: "bg-rush-teal",
   },
   {
     title: "AI in Critical Care",
     description:
       "Developing and validating artificial intelligence tools for real-time monitoring and early warning systems in the ICU.",
     icon: Brain,
-    color: "bg-rush-indigo",
+    color: "bg-rush-green",
   },
   {
     title: "Healthcare Equity & Allocation",
     description:
       "Ensuring fair and evidence-based resource allocation across diverse patient populations using computational methods.",
     icon: ShieldCheck,
-    color: "bg-rush-cerulean",
+    color: "bg-rush-emerald",
   },
 ];
 
@@ -44,7 +44,7 @@ function DomainCard({ domain, className }: { domain: Domain; className?: string 
       >
         <Icon className="h-6 w-6 text-white" />
       </div>
-      <h3 className="text-xl font-semibold text-rush-charcoal mb-2 group-hover:text-rush-deep-blue transition-colors">
+      <h3 className="text-xl font-semibold text-rush-charcoal mb-2 group-hover:text-rush-teal transition-colors">
         {domain.title}
       </h3>
       <p className="text-rush-mid-gray leading-relaxed">
@@ -58,7 +58,7 @@ export function ResearchDomains() {
   return (
     <section className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-rush-indigo mb-4">
+        <h2 className="text-3xl font-bold text-rush-green mb-4">
           Research Focus Areas
         </h2>
         <p className="text-rush-mid-gray text-lg mb-12 max-w-2xl">
@@ -86,7 +86,7 @@ export function ResearchDomains() {
                 })()}
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-rush-charcoal mb-2 group-hover:text-rush-deep-blue transition-colors">
+                <h3 className="text-xl font-semibold text-rush-charcoal mb-2 group-hover:text-rush-teal transition-colors">
                   {domains[2].title}
                 </h3>
                 <p className="text-rush-mid-gray leading-relaxed">

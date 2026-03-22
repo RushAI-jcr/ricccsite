@@ -1,10 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 
 export function Hero() {
   return (
-    <section className="bg-rush-indigo text-white">
+    <section className="bg-rush-green text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Text content */}
@@ -18,7 +17,7 @@ export function Hero() {
 
             {/* PI intro — Parker Lab style */}
             <div className="flex items-start gap-4 bg-white/10 rounded-lg p-4 mb-6">
-              <div className="shrink-0 w-16 h-16 rounded-full bg-rush-deep-blue flex items-center justify-center text-white text-xl font-bold">
+              <div className="shrink-0 w-16 h-16 rounded-full bg-rush-teal flex items-center justify-center text-white text-xl font-bold">
                 {siteConfig.pi.name.charAt(0) || "PI"}
               </div>
               <div>
@@ -38,7 +37,7 @@ export function Hero() {
                 href={siteConfig.links.clif}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-rush-cerulean hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 text-sm text-rush-emerald hover:text-white transition-colors"
               >
                 Founding member of the CLIF Consortium &rarr;
               </a>

@@ -1,60 +1,88 @@
-import { type Publication } from "./pubmed";
+import { type Publication } from "./types";
 import { type SemanticPaper } from "./semantic-scholar";
+import { type OpenAlexWork } from "./openalex";
+import { siteConfig } from "./config";
 
 /**
- * Merge PubMed and Semantic Scholar results.
- * Deduplicates by DOI/PMID — if a paper exists in both, keep PubMed metadata + add citation count.
- * Papers only in Semantic Scholar are added as new entries.
- * Does NOT mutate the input arrays.
+ * Merge publications from PubMed, Semantic Scholar, and OpenAlex.
+ * Deduplicates by DOI. Priority: PubMed metadata > OpenAlex > S2.
+ * Citation count: max across sources.
  */
 export function mergePublications(
   pubmedPubs: readonly Publication[],
-  s2Papers: readonly SemanticPaper[]
+  s2Papers: readonly SemanticPaper[],
+  oaWorks: readonly OpenAlexWork[] = []
 ): Publication[] {
-  // Clone PubMed pubs to avoid mutating the input
+  // Start with cloned PubMed results
   const enriched = pubmedPubs.map((pub) => ({ ...pub }));
 
-  // Index cloned pubs by DOI/PMID for fast lookup
+  // Index by DOI for dedup
   const byDoi = new Map<string, Publication>();
-  const byPmid = new Map<string, Publication>();
-
   for (const pub of enriched) {
     if (pub.doi) byDoi.set(pub.doi.toLowerCase(), pub);
-    if (pub.pmid) byPmid.set(pub.pmid, pub);
   }
 
-  // Enrich cloned pubs with Semantic Scholar citation counts
+  // Enrich from Semantic Scholar (citation counts)
   for (const s2 of s2Papers) {
-    const matchByDoi = s2.doi ? byDoi.get(s2.doi.toLowerCase()) : undefined;
-    const matchByPmid = s2.pmid ? byPmid.get(s2.pmid) : undefined;
-    const match = matchByDoi || matchByPmid;
+    const key = s2.doi?.toLowerCase();
+    const match = key ? byDoi.get(key) : undefined;
 
     if (match) {
-      match.citationCount = s2.citationCount;
+      match.citationCount = Math.max(match.citationCount ?? 0, s2.citationCount);
       match.source = "both";
+    } else if (s2.doi) {
+      const pub: Publication = {
+        pmid: s2.pmid ?? "",
+        title: s2.title,
+        authors: s2.authors,
+        journal: s2.venue,
+        year: s2.year?.toString() ?? "",
+        doi: s2.doi,
+        citationCount: s2.citationCount,
+        source: "semantic-scholar",
+      };
+      enriched.push(pub);
+      byDoi.set(s2.doi.toLowerCase(), pub);
     }
   }
 
-  // Find papers only in Semantic Scholar (not in PubMed)
-  const s2Only: Publication[] = s2Papers
-    .filter((s2) => {
-      const matchByDoi = s2.doi ? byDoi.has(s2.doi.toLowerCase()) : false;
-      const matchByPmid = s2.pmid ? byPmid.has(s2.pmid) : false;
-      return !matchByDoi && !matchByPmid;
-    })
-    .map((s2) => ({
-      pmid: s2.pmid ?? "",
-      title: s2.title,
-      authors: s2.authors,
-      journal: s2.venue,
-      year: s2.year?.toString() ?? "",
-      doi: s2.doi,
-      citationCount: s2.citationCount,
-      source: "semantic-scholar" as const,
-    }));
+  // Enrich from OpenAlex (citation counts, volume/issue/pages, + papers not in PubMed/S2)
+  for (const oa of oaWorks) {
+    const key = oa.doi?.toLowerCase();
+    const match = key ? byDoi.get(key) : undefined;
 
-  // Combine and sort by year (newest first)
-  return [...enriched, ...s2Only].sort((a, b) =>
-    b.year.localeCompare(a.year)
-  );
+    if (match) {
+      match.citationCount = Math.max(match.citationCount ?? 0, oa.citationCount);
+      // Backfill volume/issue/pages if PubMed didn't have them
+      if (!match.volume && oa.volume) match.volume = oa.volume;
+      if (!match.issue && oa.issue) match.issue = oa.issue;
+      if (!match.pages && oa.pages) match.pages = oa.pages;
+    } else if (oa.doi) {
+      const pub: Publication = {
+        pmid: "",
+        title: oa.title,
+        authors: oa.authors,
+        journal: oa.journal,
+        year: oa.year,
+        doi: oa.doi,
+        volume: oa.volume,
+        issue: oa.issue,
+        pages: oa.pages,
+        citationCount: oa.citationCount,
+        source: "openalex",
+      };
+      enriched.push(pub);
+      byDoi.set(oa.doi.toLowerCase(), pub);
+    }
+  }
+
+  // Filter out off-topic papers using configurable exclude patterns
+  const excludePatterns = siteConfig.excludeTitlePatterns;
+  const filtered = enriched.filter((pub) => {
+    const title = pub.title.toLowerCase();
+    return !excludePatterns.some((pattern) => title.includes(pattern));
+  });
+
+  // Sort by year (newest first)
+  return filtered.sort((a, b) => b.year.localeCompare(a.year));
 }
