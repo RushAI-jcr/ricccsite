@@ -18,13 +18,15 @@ export function ResearchSpotlights() {
   if (spotlights.length === 0) return null;
 
   return (
-    <section className="py-16 lg:py-24 bg-rush-sage">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative py-16 lg:py-24 overflow-hidden bg-gradient-to-br from-rush-mint via-rush-sage to-white">
+      {/* Subtle decorative texture */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_left_center,_rgba(0,166,108,0.05)_0%,_transparent_50%)] pointer-events-none" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-rush-green mb-2">
           Research Spotlights
         </h2>
-        <p className="text-rush-umber mb-10">
-          Featured publications from our lab
+        <p className="text-xl text-rush-umber mb-10 max-w-2xl">
+          Highlighting our recent high-impact publications and methodological breakthroughs.
         </p>
 
         <div className="space-y-6">
@@ -41,7 +43,7 @@ export function ResearchSpotlights() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block bg-white rounded-xl shadow-sm hover:shadow-md transition-all overflow-hidden"
+                className="group block bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
               >
                 <div className="flex flex-col md:flex-row">
                   {/* Key figure image (if provided) */}

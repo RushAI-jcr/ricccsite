@@ -6,6 +6,7 @@ import { mergePublications } from "@/lib/merge-publications";
 import { PubFilters } from "@/components/publications/pub-filters";
 import { ExternalLink } from "lucide-react";
 import { siteConfig } from "@/lib/config";
+import { PageHeader } from "@/components/layout/page-header";
 
 export const metadata: Metadata = {
   title: "Publications",
@@ -43,13 +44,14 @@ export default async function PublicationsPage() {
   const otherCount = publications.length - pubmedCount;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-      <h1 className="text-4xl font-bold text-rush-green mb-4">
-        Publications
-      </h1>
-
-      {/* External links */}
-      <div className="flex flex-wrap gap-4 mb-4">
+    <div>
+      <PageHeader 
+        title="Publications"
+        description="Explore the latest academic research and methodological advancements published by our laboratory members across the domains of critical care, AI, and healthcare equity."
+      />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+        {/* External links */}
+        <div className="flex flex-wrap gap-4 mb-8">
         {siteConfig.links.googleScholar && (
           <a
             href={siteConfig.links.googleScholar}
@@ -72,13 +74,14 @@ export default async function PublicationsPage() {
         )}
       </div>
 
-      <p className="text-rush-mid-gray mb-8">
-        {publications.length > 0
-          ? `${publications.length} publications (${pubmedCount} from PubMed${otherCount > 0 ? `, ${otherCount} additional from OpenAlex/Semantic Scholar` : ""}).`
-          : "Publications are loaded automatically from PubMed, Semantic Scholar, and OpenAlex."}
-      </p>
+        <p className="text-rush-mid-gray mb-8">
+          Showing {publications.length > 0
+            ? `${publications.length} peer-reviewed publications and preprints (${pubmedCount} sourced from PubMed${otherCount > 0 ? `, ${otherCount} discovered via OpenAlex/Semantic Scholar` : ""}).`
+            : "Publications are actively synced from clinical literature databases."}
+        </p>
 
-      <PubFilters publications={publications} />
+        <PubFilters publications={publications} />
+      </div>
     </div>
   );
 }

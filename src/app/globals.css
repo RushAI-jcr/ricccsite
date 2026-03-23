@@ -21,6 +21,10 @@
   /* Tertiary */
   --color-rush-sage: #DFF9EB;
   --color-rush-ivory: #FFFBEC;
+  --color-rush-mint: #E8F8F0;
+  /* Derived shades for gradients */
+  --color-rush-forest: #005228;
+  --color-rush-teal-dark: #008f5c;
   /* Neutrals */
   --color-rush-charcoal: #0C0C0C;
   --color-rush-light-gray: #EAEAEA;
@@ -111,5 +115,38 @@
   }
   html {
     @apply font-sans;
+  }
+}
+
+@layer utilities {
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  @keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out forwards;
+  }
+}
+
+.glass-nav {
+  @apply bg-rush-green/95 border-b border-white/10 shadow-sm sticky top-0 z-50 transition-[background-color,box-shadow] duration-300;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-fade-in-up {
+    animation: none;
+    opacity: 1;
   }
 }

@@ -26,13 +26,13 @@ export function Header() {
   if (pathname?.startsWith("/admin")) return null;
 
   return (
-    <header className="bg-rush-green text-white sticky top-0 z-50">
+    <header className="glass-nav text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo + Name */}
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/images/riccc-logo.png"
+              src="/images/riccc-logo-v15.webp"
               alt={`${siteConfig.name} logo`}
               width={40}
               height={40}
@@ -54,7 +54,7 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`px-3 py-2 text-sm rounded-md transition-colors ${
+                  className={`px-3 py-2 text-sm rounded-md transition-transform duration-300 hover:-translate-y-0.5 ${
                     isActive
                       ? "bg-white/20 font-medium"
                       : "hover:bg-white/10"
@@ -87,7 +87,7 @@ export function Header() {
                       key={item.href}
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className={`px-4 py-3 rounded-md text-base transition-colors ${
+                      className={`px-4 py-3 rounded-md text-base transition-colors duration-300 ${
                         isActive
                           ? "bg-white/20 font-medium"
                           : "hover:bg-white/10"

@@ -3,6 +3,7 @@ import { getTeamMembersByTier } from "@/lib/team";
 import { PiBio } from "@/components/team/pi-bio";
 import { StaffGrid } from "@/components/team/staff-grid";
 import { StudentList } from "@/components/team/student-list";
+import { PageHeader } from "@/components/layout/page-header";
 
 export const metadata: Metadata = {
   title: "Team",
@@ -18,14 +19,13 @@ export default function TeamPage() {
     grouped.student.length > 0;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
-      <h1 className="text-4xl font-bold text-rush-green mb-4">Our Team</h1>
-      <p className="text-rush-mid-gray text-lg mb-12 max-w-2xl">
-        A multidisciplinary team of clinicians, data scientists, and trainees
-        working to advance critical care through computation.
-      </p>
-
-      {!hasMembers && (
+    <div>
+      <PageHeader 
+        title="Our Team"
+        description="A multidisciplinary team of clinicians, data scientists, and trainees working to advance critical care through computation."
+      />
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+        {!hasMembers && (
         <div className="bg-white rounded-xl p-12 text-center shadow-sm">
           <p className="text-rush-mid-gray">
             Team profiles are being set up. Check back soon.
@@ -72,6 +72,7 @@ export default function TeamPage() {
           </div>
         </details>
       )}
+      </div>
     </div>
   );
 }

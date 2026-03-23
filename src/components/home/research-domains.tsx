@@ -37,7 +37,7 @@ function DomainCard({ domain, className }: { domain: Domain; className?: string 
   return (
     <Link
       href="/research"
-      className={`group bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow ${className ?? ""}`}
+      className={`group relative bg-white rounded-xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 border border-transparent hover:border-rush-teal/30 transition-[transform,box-shadow,border-color] duration-300 ${className ?? ""}`}
     >
       <div
         className={`w-12 h-12 rounded-lg ${domain.color} flex items-center justify-center mb-4`}
@@ -74,7 +74,7 @@ export function ResearchDomains() {
           {/* Third card full-width with horizontal layout on desktop */}
           <Link
             href="/research"
-            className="md:col-span-12 group bg-white rounded-xl p-8 shadow-sm hover:shadow-md transition-shadow"
+            className="md:col-span-12 group relative bg-white rounded-xl p-8 shadow-sm hover:shadow-lg hover:-translate-y-1 border border-transparent hover:border-rush-emerald/30 transition-[transform,box-shadow,border-color] duration-300"
           >
             <div className="md:flex md:items-start md:gap-6">
               <div

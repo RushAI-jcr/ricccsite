@@ -36,6 +36,7 @@ export function PiBio({ member }: { member: TeamMember }) {
                 alt={member.name}
                 width={200}
                 height={200}
+                sizes="200px"
                 className="rounded-xl object-cover"
               />
             ) : (
@@ -57,9 +58,36 @@ export function PiBio({ member }: { member: TeamMember }) {
             <p className="text-rush-mid-gray text-sm mb-4">{member.email}</p>
 
             {member.bio && (
-              <p className="text-rush-charcoal leading-relaxed mb-4">
-                {member.bio}
-              </p>
+              <div className="text-rush-charcoal leading-relaxed mb-4 space-y-2">
+                {/* Supports: **heading**, bullet lists (- item), plain paragraphs */}
+                {member.bio.split("\n\n").map((block, i) => {
+                  const trimmed = block.trim();
+                  // Bold headings: **text**
+                  if (trimmed.startsWith("**") && trimmed.endsWith("**")) {
+                    return (
+                      <h3 key={i} className="font-semibold text-rush-green mt-4 mb-1">
+                        {trimmed.replace(/\*\*/g, "")}
+                      </h3>
+                    );
+                  }
+                  // Bullet list
+                  if (trimmed.startsWith("- ") || trimmed.includes("\n- ")) {
+                    const items = trimmed
+                      .split("\n")
+                      .filter((line) => line.startsWith("- "))
+                      .map((line) => line.slice(2));
+                    return (
+                      <ul key={i} className="list-disc list-inside text-sm space-y-1">
+                        {items.map((item, j) => (
+                          <li key={j}>{item}</li>
+                        ))}
+                      </ul>
+                    );
+                  }
+                  // Regular paragraph
+                  return <p key={i}>{trimmed}</p>;
+                })}
+              </div>
             )}
 
             <div className="flex flex-wrap gap-4">

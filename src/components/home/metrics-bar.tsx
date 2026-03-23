@@ -77,11 +77,11 @@ function AnimatedCounter({
 
 export function MetricsBar() {
   return (
-    <section className="bg-rush-teal text-white py-12">
+    <section className="relative bg-gradient-to-b from-rush-teal to-rush-teal-dark text-white py-16 shadow-[inset_0_4px_16px_rgba(0,0,0,0.1)]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {metrics.map((metric) => (
-            <div key={metric.label}>
+            <div key={metric.label} className="group transition-transform duration-300 hover:scale-105">
               <div className="text-4xl lg:text-5xl font-bold mb-1">
                 <AnimatedCounter
                   target={metric.value}
