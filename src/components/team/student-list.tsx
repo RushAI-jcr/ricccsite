@@ -4,8 +4,7 @@ export function StudentList({ members }: { members: TeamMember[] }) {
   if (members.length === 0) return null;
 
   return (
-    <section className="mb-12">
-      <h2 className="text-2xl font-bold text-rush-green mb-6">Students</h2>
+    <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         {members.map((member) => {
           const initials = member.name
@@ -34,6 +33,6 @@ export function StudentList({ members }: { members: TeamMember[] }) {
           );
         })}
       </div>
-    </section>
+    </div>
   );
 }

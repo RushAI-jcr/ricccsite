@@ -33,19 +33,32 @@ export default function TeamPage() {
         </div>
       )}
 
-      {grouped.pi.map((pi) => (
-        <PiBio key={pi.slug} member={pi} />
-      ))}
+      {grouped.pi.length > 0 && (
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-rush-green mb-6">Principal Investigators</h2>
+          {grouped.pi.map((pi) => (
+            <PiBio key={pi.slug} member={pi} />
+          ))}
+        </section>
+      )}
 
-      <StaffGrid members={grouped.staff} title="Research Staff" />
+      {grouped.staff.length > 0 && (
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-rush-green mb-6">Research Team</h2>
+          <StaffGrid members={grouped.staff} title="" />
+        </section>
+      )}
 
-      <StudentList members={grouped.student} />
+      {grouped.student.length > 0 && (
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-rush-green mb-6">Trainees</h2>
+          <StudentList members={grouped.student} />
+        </section>
+      )}
 
       {grouped.alumni.length > 0 && (
-        <details className="mb-12">
-          <summary className="text-lg font-semibold text-rush-green cursor-pointer mb-4 hover:text-rush-teal">
-            Alumni ({grouped.alumni.length})
-          </summary>
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-rush-green mb-6">Alumni</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {grouped.alumni.map((member) => (
               <div
@@ -70,7 +83,7 @@ export default function TeamPage() {
               </div>
             ))}
           </div>
-        </details>
+        </section>
       )}
       </div>
     </div>

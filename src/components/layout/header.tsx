@@ -26,13 +26,13 @@ export function Header() {
   if (pathname?.startsWith("/admin")) return null;
 
   return (
-    <header className="glass-nav text-white">
+    <header className="bg-rush-green border-b border-white/10 shadow-sm sticky top-0 z-50 text-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo + Name */}
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/images/riccc-logo-v15.webp"
+              src="/images/riccc-logo-final.png"
               alt={`${siteConfig.name} logo`}
               width={40}
               height={40}

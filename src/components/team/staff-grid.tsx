@@ -70,18 +70,18 @@ export function StaffGrid({
   title,
 }: {
   members: TeamMember[];
-  title: string;
+  title?: string;
 }) {
   if (members.length === 0) return null;
 
   return (
-    <section className="mb-12">
-      <h2 className="text-2xl font-bold text-rush-green mb-6">{title}</h2>
+    <div>
+      {title && <h2 className="text-2xl font-bold text-rush-green mb-6">{title}</h2>}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {members.map((member) => (
           <MemberCard key={member.slug} member={member} />
         ))}
       </div>
-    </section>
+    </div>
   );
 }
