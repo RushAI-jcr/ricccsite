@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-export type TeamTier = "pi" | "staff" | "student" | "alumni";
+export type TeamTier = "pi" | "staff" | "student" | "alumni" | "collaborator";
 
 export interface TeamMember {
   slug: string;
@@ -25,9 +25,10 @@ const tierOrder: Record<TeamTier, number> = {
   staff: 1,
   student: 2,
   alumni: 3,
+  collaborator: 4,
 };
 
-const validTiers = new Set<string>(["pi", "staff", "student", "alumni"]);
+const validTiers = new Set<string>(["pi", "staff", "student", "alumni", "collaborator"]);
 
 export function getAllTeamMembers(): TeamMember[] {
   const teamDir = path.join(process.cwd(), "content/team");
@@ -59,11 +60,13 @@ export function getAllTeamMembers(): TeamMember[] {
     };
   });
 
-  return members.sort((a, b) => {
-    const tierDiff = tierOrder[a.tier] - tierOrder[b.tier];
-    if (tierDiff !== 0) return tierDiff;
-    return a.displayOrder - b.displayOrder;
-  });
+  return members
+    .filter((m) => m.name !== "TBD")
+    .sort((a, b) => {
+      const tierDiff = tierOrder[a.tier] - tierOrder[b.tier];
+      if (tierDiff !== 0) return tierDiff;
+      return a.displayOrder - b.displayOrder;
+    });
 }
 
 export function getTeamMembersByTier(): Record<TeamTier, TeamMember[]> {
@@ -73,6 +76,7 @@ export function getTeamMembersByTier(): Record<TeamTier, TeamMember[]> {
     staff: [],
     student: [],
     alumni: [],
+    collaborator: [],
   };
 
   for (const member of members) {
