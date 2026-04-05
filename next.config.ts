@@ -6,7 +6,7 @@ const isDev = process.env.NODE_ENV === "development";
 // https://nextjs.org/docs/app/guides/content-security-policy#without-nonces
 const cspHeader = `
   default-src 'self';
-  script-src 'self' https://unpkg.com https://va.vercel-scripts.com ${isDev ? "'unsafe-eval'" : ""};
+  script-src 'self' https://unpkg.com https://va.vercel-scripts.com ${isDev ? "'unsafe-eval' 'unsafe-inline'" : ""};
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: blob:;
   font-src 'self' https://fonts.gstatic.com;
@@ -18,6 +18,7 @@ const cspHeader = `
 `;
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ["sharp"],
   async redirects() {
     return [{ source: "/software", destination: "/tools", permanent: true }];
   },
@@ -32,6 +33,15 @@ const nextConfig: NextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Permissions-Policy", value: "camera=(), microphone=()" },
           { key: "X-DNS-Prefetch-Control", value: "on" },
+        ],
+      },
+      {
+        // Staff admin panel — never cached, never indexed
+        source: "/staff/:path*",
+        headers: [
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+          { key: "Cache-Control", value: "no-store, no-cache, private" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
         ],
       },
     ];

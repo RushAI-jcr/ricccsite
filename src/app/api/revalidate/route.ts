@@ -11,6 +11,8 @@ export async function GET(request: NextRequest) {
 
   revalidatePath("/publications");
   revalidatePath("/"); // Home page spotlights
+  revalidatePath("/team");
+  revalidatePath("/mission");
 
   return NextResponse.json({
     revalidated: true,

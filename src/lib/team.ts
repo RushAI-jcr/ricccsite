@@ -2,7 +2,9 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 
-export type TeamTier = "pi" | "staff" | "student" | "alumni" | "collaborator";
+export type { TeamTier } from "./team-constants";
+export { TEAM_TIERS, TIER_DISPLAY_ORDER, TIER_LABELS } from "./team-constants";
+import type { TeamTier } from "./team-constants";
 
 export interface TeamMember {
   slug: string;
