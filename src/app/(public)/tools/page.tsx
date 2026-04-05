@@ -233,53 +233,36 @@ export default function ToolsPage() {
               </div>
             </div>
 
-            {/* Right: SQL code snippet */}
+            {/* Right: CLIF network stats */}
             <div className="bg-rush-surface-container-high rounded-sm overflow-hidden shadow-card">
-              {/* Title bar */}
-              <div className="bg-rush-surface-container px-6 py-4 flex justify-between items-center border-b border-rush-outline-variant/20">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-rush-outline-variant/60" />
-                  <div className="w-3 h-3 rounded-full bg-rush-outline-variant/40" />
-                  <div className="w-3 h-3 rounded-full bg-rush-teal/40" />
-                </div>
-                <span className="font-mono text-[0.65rem] uppercase font-bold text-rush-on-surface-variant">
-                  clif_standard_query.sql
+              <div className="bg-rush-dark-green px-8 py-6">
+                <span className="font-mono text-xs uppercase tracking-widest text-white/60 block mb-1">
+                  CLIF Consortium
                 </span>
+                <p className="text-white font-bold text-lg">Network at a Glance</p>
               </div>
-              {/* Code block */}
-              <div className="p-8 font-mono text-sm leading-relaxed text-rush-dark-green overflow-x-auto bg-rush-surface-container">
-                <pre>
-                  <code>{`-- CLIF: Query Ventilator Settings
-SELECT
-    hospitalization_id,
-    recorded_dttm,
-    device_category,
-    mode_category,
-    peep_set,
-    fio2_set
-FROM
-    respiratory_support
-WHERE
-    device_category = 'IMV'
-ORDER BY
-    recorded_dttm DESC;`}</code>
-                </pre>
+              <div className="divide-y divide-rush-outline-variant/20">
+                {[
+                  { stat: "17", label: "Institutions" },
+                  { stat: "62", label: "Hospitals" },
+                  { stat: "800K+", label: "ICU patients" },
+                  { stat: "22+", label: "Relational tables" },
+                ].map(({ stat, label }) => (
+                  <div key={label} className="flex items-center justify-between px-8 py-5">
+                    <span className="text-rush-on-surface-variant text-sm">{label}</span>
+                    <span className="font-mono text-2xl font-bold text-rush-dark-green">{stat}</span>
+                  </div>
+                ))}
               </div>
-              {/* Python footer */}
-              <div className="bg-rush-surface-container px-8 py-6 border-t border-rush-outline-variant/20">
-                <h5 className="font-mono text-xs uppercase tracking-widest text-rush-on-surface-variant mb-4">
-                  Python Integration
-                </h5>
-                <div className="font-mono text-[0.85rem] text-rush-on-surface-variant leading-relaxed">
-                  <span className="text-rush-teal">import</span> pandas{" "}
-                  <span className="text-rush-teal">as</span> pd
-                  <br />
-                  df = pd.read_parquet(
-                  <span className="text-rush-dark-green">&quot;respiratory_support.parquet&quot;</span>)
-                  <br />
-                  cohort = df.query(
-                  <span className="text-rush-dark-green">&quot;device_category == &apos;IMV&apos;&quot;</span>)
-                </div>
+              <div className="px-8 py-6 bg-rush-surface-container border-t border-rush-outline-variant/20">
+                <a
+                  href={siteConfig.links.clif}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-bold text-sm text-rush-dark-green underline underline-offset-4 decoration-rush-teal hover:gap-4 transition-all"
+                >
+                  Visit clif-icu.com &rarr;
+                </a>
               </div>
             </div>
           </div>
