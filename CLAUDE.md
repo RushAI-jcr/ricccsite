@@ -1,5 +1,8 @@
 # RICCC Lab Website
 
+## Contact
+- Public lab email: info@riccc-lab.com
+
 ## Tech Stack
 - Next.js 15 (App Router) + TypeScript
 - Tailwind CSS v4 + shadcn/ui
@@ -9,6 +12,7 @@
 - Content stored as MDX/JSON files in content/ directory
 
 ## Content Management (Sveltia CMS)
+- GitHub org: https://github.com/riccc-rush-lab — site repository `ricccsite` (Sveltia commits here)
 - CMS at /admin/ — edits commit directly to GitHub repo
 - Auth: GitHub OAuth (editors need GitHub account + repo write access)
 - Team members: content/team/*.mdx (editable via CMS)
@@ -18,11 +22,12 @@
 
 ## Rush Brand System (from Rush Digital Quick Guide)
 Official Rush colors with green as primary, defined in globals.css:
-- `rush-green` (#006332): Growth Green — nav, hero, headings, primary CTAs
-- `rush-teal` (#00A66C): Legacy Green — links, secondary buttons, accents
+- `rush-green` (#006332): Growth Green — official primary brand color
+- `rush-dark-green` (#004923): Derived heading shade — actual color used for h1–h3, CTA button backgrounds, active nav (darker for accessibility contrast ~9:1 on warm ivory)
+- `rush-teal` (#00A66C): Legacy Green — links, secondary buttons, accents, focus rings
 - `rush-emerald` (#5FEEA2): Vitality Green — highlights, badges
 - `rush-ivory` (#FFFBEC): Page background (Rush tertiary)
-- `rush-sage` (#DFF9EB): Section alternation (Rush tertiary)
+- `rush-sage` (#DFF9EB): Section alternation bands (Rush tertiary) — use for alternating section backgrounds
 - `rush-charcoal` (#0C0C0C): Body text (Rush Black)
 - `rush-mid-gray` (#A59F9F): Secondary text (Rush Wash Gray)
 - `rush-umber` (#5F5858): Muted text (Rush Raw Umber)

@@ -1,116 +1,123 @@
 import Image from "next/image";
 import { type TeamMember } from "@/lib/team";
-import { ExternalLink } from "lucide-react";
-import { isSafeUrl } from "@/lib/url";
+import {
+  hasMemberSocialLinks,
+  MemberSocialLinks,
+} from "@/components/team/member-social-links";
 
-function AcademicLink({ href, label }: { href: string; label: string }) {
-  if (!isSafeUrl(href)) return null;
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="inline-flex items-center gap-1 text-sm text-rush-teal hover:underline"
-    >
-      {label}
-      <ExternalLink className="h-3 w-3" />
-    </a>
-  );
+// Usage:
+// <PiBio member={pi} index={0} />   → left-text / right-photo (surface-container-low bg)
+// <PiBio member={pi} index={1} />   → right-text / left-photo (surface-container-high bg)
+
+interface PiBioProps {
+  member: TeamMember;
+  /** Controls alternating layout (even = text left, odd = text right) */
+  index?: number;
 }
 
-export function PiBio({ member }: { member: TeamMember }) {
-  const initials = member.name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .slice(0, 2);
+/** Extract interest tags from the first sentence of the bio.
+ *  "Research interests include clinical data science, critical care informatics, and healthcare equity."
+ *  → ["Clinical Data Science", "Critical Care Informatics", "Healthcare Equity"]
+ */
+function extractInterests(bio: string): string[] {
+  const firstLine = bio.split("\n")[0].trim();
+  const match = firstLine.match(/research interests include (.+?)\.?$/i);
+  if (!match) return [];
+  return match[1]
+    .split(/,\s*(?:and\s*)?/)
+    .map((tag) => tag.replace(/\.$/, "").trim())
+    .filter(Boolean);
+}
+
+/** First non-interests paragraph of the bio. */
+function getLeadParagraph(bio: string): string {
+  const blocks = bio.split("\n\n");
+  if (blocks.length > 1 && /research interests include/i.test(blocks[0])) {
+    return (blocks[1] ?? blocks[0]).trim();
+  }
+  return blocks[0].trim();
+}
+
+export function PiBio({ member, index = 0 }: PiBioProps) {
+  const isReversed = index % 2 !== 0;
+  const interests = extractInterests(member.bio);
+  const leadParagraph = getLeadParagraph(member.bio);
+
+  const contentBg = isReversed
+    ? "bg-rush-surface-container-high"
+    : "bg-rush-surface-container-low";
+
+  const primaryRole = member.role.split(" | ")[0];
 
   return (
-    <section className="mb-16">
-      <div className="bg-white rounded-xl p-8 shadow-sm">
-        <div className="flex flex-col md:flex-row gap-8 items-start">
-          <div className="shrink-0">
-            {member.photo ? (
-              <Image
-                src={member.photo}
-                alt={member.name}
-                width={200}
-                height={200}
-                sizes="200px"
-                className="rounded-xl object-cover"
-              />
-            ) : (
-              <div className="w-[200px] h-[200px] rounded-xl bg-rush-green flex items-center justify-center text-white text-4xl font-bold">
-                {initials}
-              </div>
-            )}
-          </div>
+    <section className="mb-0" aria-label={`${member.name} profile`}>
+      <div className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-stretch gap-0`}>
+        {/* Text panel */}
+        <div className={`lg:w-3/5 ${contentBg} p-10 md:p-16 flex flex-col justify-center`}>
+          <div className={`max-w-xl ${isReversed ? "mr-auto" : "ml-auto"}`}>
+            <span className="font-mono text-xs uppercase tracking-widest text-rush-teal mb-4 block">
+              Principal Investigator
+            </span>
 
-          <div className="flex-1">
-            <h2 className="text-2xl font-bold text-rush-charcoal mb-1">
+            <h2 className="text-3xl font-bold text-rush-dark-green mb-2 leading-tight">
               {member.name}
             </h2>
-            <div className="text-rush-teal font-medium mb-1 space-y-0.5">
-              {member.role.split(" | ").map((title) => (
-                <p key={title}>{title}</p>
-              ))}
-            </div>
-            <p className="text-rush-mid-gray text-sm mb-4">{member.email}</p>
 
-            {member.bio && (
-              <div className="text-rush-charcoal leading-relaxed mb-4 space-y-2">
-                {/* Supports: **heading**, bullet lists (- item), plain paragraphs */}
-                {member.bio.split("\n\n").map((block, i) => {
-                  const trimmed = block.trim();
-                  // Bold headings: **text**
-                  if (trimmed.startsWith("**") && trimmed.endsWith("**")) {
-                    return (
-                      <h3 key={i} className="font-semibold text-rush-green mt-4 mb-1">
-                        {trimmed.replace(/\*\*/g, "")}
-                      </h3>
-                    );
-                  }
-                  // Bullet list
-                  if (trimmed.startsWith("- ") || trimmed.includes("\n- ")) {
-                    const items = trimmed
-                      .split("\n")
-                      .filter((line) => line.startsWith("- "))
-                      .map((line) => line.slice(2));
-                    return (
-                      <ul key={i} className="list-disc list-inside text-sm space-y-1">
-                        {items.map((item, j) => (
-                          <li key={j}>{item}</li>
-                        ))}
-                      </ul>
-                    );
-                  }
-                  // Regular paragraph
-                  return <p key={i}>{trimmed}</p>;
-                })}
+            <p className="font-mono text-sm text-rush-on-surface-variant mb-8 leading-relaxed">
+              {primaryRole}
+            </p>
+
+            {leadParagraph && (
+              <div className="space-y-4 text-rush-on-surface/80 leading-relaxed mb-8">
+                <p className="line-clamp-4">{leadParagraph}</p>
               </div>
             )}
 
-            <div className="flex flex-wrap gap-4">
-              {member.orcid && (
-                <AcademicLink
-                  href={`https://orcid.org/${member.orcid}`}
-                  label="ORCID"
-                />
-              )}
-              {member.scholar && (
-                <AcademicLink href={member.scholar} label="Google Scholar" />
-              )}
-              {member.website && (
-                <AcademicLink href={member.website} label="Website" />
-              )}
-              {member.github && (
-                <AcademicLink
-                  href={`https://github.com/${member.github}`}
-                  label="GitHub"
-                />
-              )}
-            </div>
+            {interests.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-8">
+                {interests.map((tag) => (
+                  <span
+                    key={tag}
+                    className="bg-rush-secondary-container text-rush-dark-green text-[10px] font-mono px-3 py-1 rounded-sm uppercase tracking-widest"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {hasMemberSocialLinks(member) && (
+              <div className="space-y-3">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-rush-on-surface-variant/70 block">
+                  Profiles & links
+                </span>
+                <MemberSocialLinks member={member} variant="pi" />
+              </div>
+            )}
           </div>
+        </div>
+
+        {/* Photo panel */}
+        <div className="lg:w-2/5 h-[280px] lg:h-auto overflow-hidden relative bg-rush-surface-container">
+          {member.photo ? (
+            <Image
+              src={member.photo}
+              alt={`Portrait of ${member.name}`}
+              fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center bg-rush-surface-container-high min-h-[280px]">
+              <span className="font-mono text-6xl font-bold text-rush-on-surface-variant/20 select-none">
+                {member.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")
+                  .slice(0, 2)}
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </section>

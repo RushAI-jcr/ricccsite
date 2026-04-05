@@ -15,6 +15,7 @@ export interface TeamMember {
   pubmedName?: string;
   orcid?: string;
   scholar?: string;
+  linkedin?: string;
   website?: string;
   github?: string;
   displayOrder: number;
@@ -54,6 +55,7 @@ export function getAllTeamMembers(): TeamMember[] {
       pubmedName: data.pubmed_name || undefined,
       orcid: data.orcid || undefined,
       scholar: data.scholar || undefined,
+      linkedin: data.linkedin || undefined,
       website: data.website || undefined,
       github: data.github || undefined,
       displayOrder: data.display_order ?? 50,

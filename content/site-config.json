@@ -11,14 +11,14 @@
   "pi": {
     "name": "Juan C. (J.C.) Rojas",
     "credentials": "MD, MS",
-    "title": "Associate Professor",
+    "title": "Assistant Professor",
     "email": "juan_rojas@rush.edu"
   },
   "metrics": {
     "publications": 50,
     "active_projects": 8,
     "team_members": 15,
-    "founded": 2020
+    "founded": 2025
   },
   "exclude_title_patterns": [
     "drosophila", "tephritidae", "anastrepha", "diptera",
@@ -32,7 +32,7 @@
   "links": {
     "google_scholar": "https://scholar.google.com/citations?user=XXHTvWEAAAAJ",
     "my_ncbi": "",
-    "github": "https://github.com/RushAI-jcr",
+    "github": "https://github.com/riccc-rush-lab",
     "twitter": "",
     "bluesky": "",
     "clif": "https://clif-icu.com"

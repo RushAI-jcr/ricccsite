@@ -44,44 +44,46 @@ export default async function PublicationsPage() {
   const otherCount = publications.length - pubmedCount;
 
   return (
-    <div>
-      <PageHeader 
+    <main className="bg-rush-surface text-rush-on-surface">
+      <PageHeader
+        label="The Living Archive"
         title="Publications"
-        description="Explore the latest academic research and methodological advancements published by our laboratory members across the domains of critical care, AI, and healthcare equity."
+        description="Papers from the lab — critical care, machine learning, federated data, and healthcare equity. Automatically synced from PubMed, OpenAlex, and Semantic Scholar."
       />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-        {/* External links */}
-        <div className="flex flex-wrap gap-4 mb-8">
-        {siteConfig.links.googleScholar && (
-          <a
-            href={siteConfig.links.googleScholar}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm text-rush-teal hover:underline"
-          >
-            Google Scholar <ExternalLink className="h-3 w-3" />
-          </a>
-        )}
-        {siteConfig.links.myNcbi && (
-          <a
-            href={siteConfig.links.myNcbi}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-sm text-rush-teal hover:underline"
-          >
-            MyNCBI <ExternalLink className="h-3 w-3" />
-          </a>
-        )}
-      </div>
 
-        <p className="text-rush-mid-gray mb-8">
-          Showing {publications.length > 0
-            ? `${publications.length} peer-reviewed publications and preprints (${pubmedCount} sourced from PubMed${otherCount > 0 ? `, ${otherCount} discovered via OpenAlex/Semantic Scholar` : ""}).`
+      <div className="max-w-screen-2xl mx-auto px-6 lg:px-8 py-24">
+        {/* External links */}
+        <div className="flex flex-wrap gap-6 mb-8">
+          {siteConfig.links.googleScholar && (
+            <a
+              href={siteConfig.links.googleScholar}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-rush-teal hover:text-rush-dark-green transition-colors underline underline-offset-4"
+            >
+              Google Scholar <ExternalLink className="h-3 w-3" aria-hidden="true" />
+            </a>
+          )}
+          {siteConfig.links.myNcbi && (
+            <a
+              href={siteConfig.links.myNcbi}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-rush-teal hover:text-rush-dark-green transition-colors underline underline-offset-4"
+            >
+              MyNCBI <ExternalLink className="h-3 w-3" aria-hidden="true" />
+            </a>
+          )}
+        </div>
+
+        <p className="font-mono text-xs uppercase tracking-widest text-rush-on-surface-variant mb-10 border-b border-rush-outline-variant/20 pb-6">
+          {publications.length > 0
+            ? `${publications.length} peer-reviewed publications and preprints \u2014 ${pubmedCount} sourced from PubMed${otherCount > 0 ? `, ${otherCount} via OpenAlex / Semantic Scholar` : ""}`
             : "Publications are actively synced from clinical literature databases."}
         </p>
 
         <PubFilters publications={publications} />
       </div>
-    </div>
+    </main>
   );
 }

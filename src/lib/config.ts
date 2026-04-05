@@ -26,7 +26,7 @@ interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: siteConfigData.lab_name,
   fullName: siteConfigData.full_name,
-  institution: "Rush University Medical Center",
+  institution: "Rush University System for Health",
   department: "Department of Medicine",
   address: "Chicago, IL",
   tagline: siteConfigData.tagline,

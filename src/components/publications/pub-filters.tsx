@@ -1,26 +1,31 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useDeferredValue, useMemo, useState } from "react";
 import { type Publication } from "@/lib/types";
 import { PubCard } from "./pub-card";
 
 export function PubFilters({ publications }: { publications: Publication[] }) {
   const [search, setSearch] = useState("");
   const [yearFilter, setYearFilter] = useState("");
+  const deferredSearch = useDeferredValue(search);
 
   // Extract unique years
   const years = [...new Set(publications.map((p) => p.year).filter(Boolean))].sort(
     (a, b) => b.localeCompare(a)
   );
 
-  const filtered = publications.filter((pub) => {
-    const matchesSearch =
-      !search ||
-      pub.title.toLowerCase().includes(search.toLowerCase()) ||
-      pub.authors.toLowerCase().includes(search.toLowerCase());
-    const matchesYear = !yearFilter || pub.year === yearFilter;
-    return matchesSearch && matchesYear;
-  });
+  const filtered = useMemo(
+    () =>
+      publications.filter((pub) => {
+        const matchesSearch =
+          !deferredSearch ||
+          pub.title.toLowerCase().includes(deferredSearch.toLowerCase()) ||
+          pub.authors.toLowerCase().includes(deferredSearch.toLowerCase());
+        const matchesYear = !yearFilter || pub.year === yearFilter;
+        return matchesSearch && matchesYear;
+      }),
+    [publications, deferredSearch, yearFilter]
+  );
 
   // Group by year and sort within each group by citation count (non-mutating)
   const { grouped, sortedYears } = useMemo(() => {
@@ -50,12 +55,12 @@ export function PubFilters({ publications }: { publications: Publication[] }) {
           placeholder="Search by title or author..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rush-teal"
+          className="flex-1 rounded-sm border border-rush-outline-variant px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rush-teal"
         />
         <select
           value={yearFilter}
           onChange={(e) => setYearFilter(e.target.value)}
-          className="rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rush-teal"
+          className="rounded-sm border border-rush-outline-variant px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-rush-teal"
         >
           <option value="">All years</option>
           {years.map((year) => (
@@ -67,14 +72,14 @@ export function PubFilters({ publications }: { publications: Publication[] }) {
       </div>
 
       {sortedYears.length === 0 && (
-        <p className="text-rush-mid-gray text-center py-8">
+        <p className="text-rush-on-surface-variant text-center py-8">
           No publications match your search.
         </p>
       )}
 
       {sortedYears.map((year) => (
         <div key={year} className="mb-8">
-          <h3 className="text-lg font-semibold text-rush-green mb-4">
+          <h3 className="text-lg font-semibold text-rush-dark-green mb-4">
             {year}
           </h3>
           <div className="space-y-3">

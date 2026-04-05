@@ -14,7 +14,7 @@ This guide is for lab members who need to update their profile, add new team mem
    - **Photo**: Click to upload a square headshot (at least 400x400px)
    - **Bio**: Write 2-3 sentences about your research interests
    - **PubMed Author Name**: Your PubMed author name (e.g., "Doe J") — this auto-fetches your publications
-   - **Academic Links**: ORCID, Google Scholar, personal website, GitHub username
+   - **Academic links**: **Google Scholar** (full profile URL), **LinkedIn** (full profile URL), ORCID, personal website, GitHub username — all optional; add only what you want shown on the team page
 6. Click **"Publish"** to save
 
 Changes auto-deploy to the live site within 2-3 minutes.
@@ -52,4 +52,4 @@ Publications are **automatically fetched from PubMed** — you don't need to add
 
 ## Need Help?
 
-Contact the lab admin or open an issue at https://github.com/RushAI-jcr/ricccsite/issues
+Contact the lab admin or open an issue at https://github.com/riccc-rush-lab/ricccsite/issues

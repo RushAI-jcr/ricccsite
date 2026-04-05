@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: RushAI-jcr/ricccsite
+  repo: riccc-rush-lab/ricccsite
   branch: main
 
 media_folder: public/images
@@ -25,7 +25,8 @@ collections:
       - { name: photo, label: Photo, widget: image, required: false, hint: "Square headshot, at least 400x400px" }
       - { name: pubmed_name, label: PubMed Author Name, widget: string, required: false, hint: "e.g. 'Smith J' — enables auto-fetching your publications from PubMed" }
       - { name: orcid, label: ORCID, widget: string, required: false, hint: "e.g. 0000-0000-0000-0000" }
-      - { name: scholar, label: Google Scholar URL, widget: string, required: false }
+      - { name: scholar, label: Google Scholar URL, widget: string, required: false, hint: "Full profile URL, e.g. https://scholar.google.com/citations?user=..." }
+      - { name: linkedin, label: LinkedIn profile URL, widget: string, required: false, hint: "Full URL, e.g. https://www.linkedin.com/in/username" }
       - { name: website, label: Personal Website, widget: string, required: false }
       - { name: github, label: GitHub Username, widget: string, required: false }
       - { name: display_order, label: Display Order, widget: number, default: 50, hint: "Lower numbers appear first within the same tier" }

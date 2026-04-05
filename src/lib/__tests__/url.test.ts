@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { isSafeUrl } from "../url";
+import { isSafeUrl, isValidDoi, isValidPmid } from "../url";
 
 describe("isSafeUrl", () => {
   it("accepts https URLs", () => {
@@ -40,5 +40,44 @@ describe("isSafeUrl", () => {
 
   it("rejects malformed URLs", () => {
     expect(isSafeUrl("not a url")).toBe(false);
+  });
+});
+
+describe("isValidDoi", () => {
+  it("accepts standard DOIs", () => {
+    expect(isValidDoi("10.1001/jama.2024.12345")).toBe(true);
+    expect(isValidDoi("10.1038/s41586-024-07386-0")).toBe(true);
+    expect(isValidDoi("10.1164/rccm.202401-0001OC")).toBe(true);
+  });
+
+  it("rejects wrong prefix", () => {
+    expect(isValidDoi("11.1001/jama.2024")).toBe(false);
+  });
+
+  it("rejects incomplete DOIs", () => {
+    expect(isValidDoi("10.1001")).toBe(false);
+    expect(isValidDoi("10.")).toBe(false);
+  });
+
+  it("rejects empty and whitespace", () => {
+    expect(isValidDoi("")).toBe(false);
+    expect(isValidDoi("10.1001/jama 2024")).toBe(false);
+  });
+});
+
+describe("isValidPmid", () => {
+  it("accepts numeric IDs", () => {
+    expect(isValidPmid("12345678")).toBe(true);
+    expect(isValidPmid("1")).toBe(true);
+  });
+
+  it("rejects non-numeric", () => {
+    expect(isValidPmid("abc")).toBe(false);
+    expect(isValidPmid("123.45")).toBe(false);
+    expect(isValidPmid("12345abc")).toBe(false);
+  });
+
+  it("rejects empty string", () => {
+    expect(isValidPmid("")).toBe(false);
   });
 });

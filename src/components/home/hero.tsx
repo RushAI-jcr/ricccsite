@@ -1,87 +1,51 @@
 import Image from "next/image";
+import Link from "next/link";
 import { siteConfig } from "@/lib/config";
-
-const goals = [
-  {
-    title: "ICU Data Science",
-    description:
-      "Applying machine learning, NLP, and predictive analytics to large-scale ICU datasets to build clinical decision support tools.",
-  },
-  {
-    title: "Federated ICU Research",
-    description:
-      "Leading multi-center collaborations across 10+ U.S. hospitals through the CLIF Consortium — analyzing care variations without sharing raw patient data.",
-  },
-  {
-    title: "Clinical Trials in ICU",
-    description:
-      "Designing pragmatic randomized trials and applying causal inference methods to determine which care variations truly affect patient outcomes.",
-  },
-  {
-    title: "Multidisciplinary ICU Research",
-    description:
-      "Bridging pulmonary medicine, critical care, clinical informatics, biostatistics, and respiratory care to tackle problems no single discipline can solve alone.",
-  },
-];
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-rush-green via-rush-forest to-rush-teal text-white">
-      {/* Decorative subtle glow */}
-      <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-rush-emerald/10 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative px-6 lg:px-8 py-24 md:py-32 max-w-screen-2xl mx-auto pt-32 md:pt-40">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* Left: 8 cols */}
+        <div className="lg:col-span-8">
+          <p className="font-mono text-xs uppercase tracking-widest text-rush-teal mb-6">
+            Established {siteConfig.metrics.founded} &bull; Rush University
+          </p>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Text content */}
-          <div>
-            <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4">
-              {siteConfig.fullName}
-            </h1>
-            <p className="text-lg text-white/80 mb-4 leading-relaxed">
-              Critical care generates enormous data — and most of it goes unused
-              at the bedside. The RICCC Lab at Rush University Medical Center
-              builds the methods, tools, and evidence to change that. Through
-              federated research across 10 U.S. hospitals, pragmatic clinical
-              trials, and causal inference, we turn ICU data into
-              practice-changing insights for critically ill patients.
-            </p>
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-rush-dark-green leading-[1.1] mb-8">
+            {siteConfig.fullName}
+          </h1>
 
-            <p className="text-sm text-rush-emerald mb-8">
-              Founding members of the{" "}
-              <a
-                href={siteConfig.links.clif}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-white transition-colors"
-              >
-                CLIF Consortium
-              </a>{" "}
-              — a federated network across 10+ U.S. academic medical centers
-            </p>
+          <p className="text-xl text-rush-on-surface-variant max-w-2xl leading-relaxed mb-10">
+            {siteConfig.tagline}
+          </p>
 
-            {/* Research goals */}
-            <div className="space-y-4">
-              {goals.map((goal) => (
-                <div key={goal.title}>
-                  <h3 className="font-semibold text-sm text-rush-emerald">
-                    {goal.title}
-                  </h3>
-                  <p className="text-white/70 text-sm leading-relaxed">
-                    {goal.description}
-                  </p>
-                </div>
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-4 mb-10">
+            <Link
+              href="/mission"
+              className="bg-rush-dark-green text-white px-8 py-4 rounded-sm font-semibold hover:opacity-90 transition-opacity"
+            >
+              Explore Our Mission
+            </Link>
+            <Link
+              href="/publications"
+              className="border border-rush-outline-variant text-rush-dark-green px-8 py-4 rounded-sm font-semibold hover:bg-rush-surface-container transition-colors"
+            >
+              View Publications
+            </Link>
           </div>
+        </div>
 
-          {/* Lab logo / hero image */}
-          <div className="flex justify-center lg:justify-end">
+        {/* Right: 4 cols */}
+        <div className="lg:col-span-4">
+          <div className="aspect-[3/4] rounded-sm overflow-hidden shadow-2xl bg-rush-surface-container">
             <Image
               src="/images/riccc-logo-final.png"
               alt={`${siteConfig.name} logo`}
-              width={400}
-              height={400}
-              className="rounded-2xl shadow-2xl shadow-black/20 animate-float"
+              width={600}
+              height={800}
+              sizes="(max-width: 1024px) 100vw, 33vw"
+              className="w-full h-full object-contain"
               priority
             />
           </div>

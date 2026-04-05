@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import spotlightData from "../../../content/spotlights.json";
+import { isValidDoi, isValidPmid } from "@/lib/url";
 
 interface Spotlight {
   title: string;
@@ -18,42 +19,44 @@ export function ResearchSpotlights() {
   if (spotlights.length === 0) return null;
 
   return (
-    <section className="relative py-16 lg:py-24 overflow-hidden bg-gradient-to-br from-rush-mint via-rush-sage to-white">
-      {/* Subtle decorative texture */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_left_center,_rgba(0,166,108,0.05)_0%,_transparent_50%)] pointer-events-none" />
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-rush-green mb-2">
+    <section className="py-16 lg:py-24 px-6 lg:px-8">
+      <div className="max-w-screen-2xl mx-auto">
+        <h2 className="text-3xl font-bold text-rush-dark-green mb-2">
           Research Spotlights
         </h2>
-        <p className="text-xl text-rush-umber mb-10 max-w-2xl">
-          Highlighting our recent high-impact publications and methodological breakthroughs.
+        <p className="text-xl text-rush-on-surface-variant mb-10 max-w-2xl">
+          Recent publications from the lab.
         </p>
 
         <div className="space-y-6">
           {spotlights.map((pub) => {
-            const href = pub.doi
+            const href = pub.doi && isValidDoi(pub.doi)
               ? `https://doi.org/${pub.doi}`
-              : pub.pmid
+              : pub.pmid && isValidPmid(pub.pmid)
               ? `https://pubmed.ncbi.nlm.nih.gov/${pub.pmid}/`
               : undefined;
 
+            const Wrapper = href ? "a" : "div";
+            const linkProps = href
+              ? { href, target: "_blank" as const, rel: "noopener noreferrer" }
+              : {};
+
             return (
-              <a
+              <Wrapper
                 key={pub.title}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                {...linkProps}
+                className="group block bg-rush-surface rounded-sm shadow-card hover:shadow-lg transition-shadow overflow-hidden"
               >
                 <div className="flex flex-col md:flex-row">
                   {/* Key figure image (if provided) */}
                   {pub.image && (
-                    <div className="md:w-72 shrink-0 bg-rush-light-gray">
+                    <div className="md:w-72 shrink-0 bg-rush-surface-container-high">
                       <Image
                         src={pub.image}
                         alt={`Key figure from ${pub.title}`}
                         width={288}
                         height={200}
+                        sizes="(max-width: 768px) 100vw, 288px"
                         className="w-full h-48 md:h-full object-cover"
                       />
                     </div>
@@ -62,20 +65,20 @@ export function ResearchSpotlights() {
                   {/* Paper details */}
                   <div className="flex-1 p-6">
                     {/* Journal badge */}
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="inline-flex items-center rounded-full bg-rush-green px-3 py-1 text-xs font-bold text-white uppercase tracking-wider">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="inline-flex items-center bg-rush-dark-green text-white font-mono text-xs uppercase px-3 py-1 tracking-widest">
                         {pub.journal}
                       </span>
-                      <span className="text-sm text-rush-umber">{pub.year}</span>
+                      <span className="text-sm text-rush-on-surface-variant">{pub.year}</span>
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-rush-charcoal mb-3 group-hover:text-rush-green transition-colors leading-snug">
+                    <h3 className="text-xl font-bold text-rush-on-surface mb-3 group-hover:text-rush-dark-green transition-colors leading-snug">
                       {pub.title}
                     </h3>
 
                     {/* Authors */}
-                    <p className="text-sm text-rush-umber mb-4 leading-relaxed">
+                    <p className="text-sm text-rush-on-surface-variant mb-4 leading-relaxed">
                       {pub.authors}
                     </p>
 
@@ -87,7 +90,7 @@ export function ResearchSpotlights() {
                     )}
                   </div>
                 </div>
-              </a>
+              </Wrapper>
             );
           })}
         </div>

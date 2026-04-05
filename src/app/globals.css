@@ -31,6 +31,28 @@
   --color-rush-mid-gray: #A59F9F;
   --color-rush-white: #FFFFFF;
 
+  /*
+   * Canonical UI schema: "Critical Care Editorial" (Stitch) + Rush Digital Quick Guide accents.
+   * — Page canvas: bg-rush-surface.
+   * — Neutral alternating bands: bg-rush-surface-container-low (most common) | -container | -container-high.
+   * — Brand-accent bands: bg-rush-sage (mission/primary CTA sections that should read as Rush green).
+   * — Text: text-rush-on-surface (body), text-rush-on-surface-variant (secondary), text-rush-dark-green (headings).
+   * — Primary actions: bg-rush-dark-green text-white; links: text-rush-teal; chips/highlights: rush-secondary-container / rush-emerald.
+   * — Borders: border-rush-outline-variant/15–30. Avoid pure white boxes on ivory; use surface-container-* for elevation.
+   * Reference: stitch-exports/riccc-stitch-color-schema.json
+   */
+  /* Stitch editorial surface system (Material Design 3 mapped to Rush) */
+  --color-rush-dark-green: #004923;
+  --color-rush-surface: #fdf9ea;
+  --color-rush-surface-container: #f2eedf;
+  --color-rush-surface-container-low: #f8f4e5;
+  --color-rush-surface-container-high: #ece8da;
+  --color-rush-on-surface: #1c1c13;
+  --color-rush-on-surface-variant: #3f4940;
+  --color-rush-outline: #6f7a6f;
+  --color-rush-outline-variant: #bfc9bd;
+  --color-rush-secondary-container: #79fbb8;
+
   /* shadcn/ui semantic tokens */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -70,9 +92,16 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* Shadow tokens in plain @theme so they generate CSS custom properties (overridable).
+   Kept separate from @theme inline which is reserved for color/font bridge tokens. */
+@theme {
+  --shadow-card: 0 12px 32px rgba(28,28,19,0.06);
+  --shadow-card-sm: 0 8px 32px rgba(12,12,12,0.04);
+}
+
 :root {
   /* Rush-branded semantic tokens — Growth Green as primary */
-  --background: #FFFBEC;       /* Rush Ivory */
+  --background: #fdf9ea;       /* Match rush-surface / Stitch canvas (Critical Care Editorial) */
   --foreground: #0C0C0C;       /* Rush Black */
   --card: #FFFFFF;
   --card-foreground: #0C0C0C;
@@ -95,8 +124,8 @@
   --chart-3: #5FEEA2;
   --chart-4: #5F5858;
   --chart-5: #0C0C0C;
-  --radius: 0.5rem;
-  --sidebar: #FFFBEC;
+  --radius: 0.25rem;
+  --sidebar: #fdf9ea;
   --sidebar-foreground: #0C0C0C;
   --sidebar-primary: #006332;
   --sidebar-primary-foreground: #FFFFFF;
@@ -118,32 +147,3 @@
   }
 }
 
-@layer utilities {
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-  }
-
-  @keyframes fade-in-up {
-    0% { opacity: 0; transform: translateY(10px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .animate-fade-in-up {
-    animation: fade-in-up 0.6s ease-out forwards;
-  }
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-float,
-  .animate-fade-in-up {
-    animation: none;
-    opacity: 1;
-  }
-}

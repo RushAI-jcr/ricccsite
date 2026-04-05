@@ -18,6 +18,9 @@ const cspHeader = `
 `;
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [{ source: "/software", destination: "/tools", permanent: true }];
+  },
   async headers() {
     return [
       {
