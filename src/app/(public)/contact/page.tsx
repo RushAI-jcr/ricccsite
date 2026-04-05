@@ -94,8 +94,7 @@ export default function ContactPage() {
               </h3>
               <p className="text-base leading-relaxed mb-6 text-rush-on-surface-variant">
                 We selectively engage with press, podcasts, webinars, and institutional
-                communications when topics align with our expertise. Official Rush statements
-                go through university channels.
+                communications when topics align with our expertise.
               </p>
             </div>
             <div>
@@ -128,8 +127,8 @@ export default function ContactPage() {
                 External Collaborators
               </h3>
               <p className="text-base leading-relaxed mb-6 text-rush-on-surface-variant">
-                We consider industry-supported research when the science, institutional review,
-                and patient-safety expectations align. We are not seeking broad commercial partnerships.
+                Investigators at other institutions or industry partners interested in
+                collaborative research, data sharing, or joint projects.
               </p>
             </div>
             <div>
