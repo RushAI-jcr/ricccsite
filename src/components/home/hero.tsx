@@ -38,14 +38,14 @@ export function Hero() {
 
         {/* Right: 4 cols */}
         <div className="lg:col-span-4">
-          <div className="aspect-[3/4] rounded-sm overflow-hidden shadow-2xl bg-rush-surface-container">
+          <div className="aspect-[3/4] rounded-sm overflow-hidden shadow-card bg-rush-surface-container p-6 md:p-8 flex items-center justify-center">
             <Image
-              src="/images/riccc-logo-final.png"
+              src="/images/riccc-logo-transparent.webp"
               alt={`${siteConfig.name} logo`}
-              width={600}
+              width={800}
               height={800}
               sizes="(max-width: 1024px) 100vw, 33vw"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain object-center drop-shadow-sm"
               priority
             />
           </div>

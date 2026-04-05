@@ -31,12 +31,12 @@ export function Header() {
         {/* Logo + Name */}
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/images/riccc-logo-final.png"
+            src="/images/riccc-logo-transparent.webp"
             alt={`${siteConfig.name} logo`}
             width={36}
             height={36}
             sizes="36px"
-            className="rounded-sm"
+            className="rounded-sm object-contain"
           />
           <span className="text-xl font-bold tracking-tighter text-rush-dark-green">
             {siteConfig.name}

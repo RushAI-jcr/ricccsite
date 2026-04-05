@@ -8,9 +8,9 @@ import { RESEARCH_PILLARS } from "@/lib/research-pillars";
 import { getAllTeamMembers, type TeamMember } from "@/lib/team";
 
 export const metadata: Metadata = {
-  title: "Mission — Advancing Critical Care Through Data Science & AI",
+  title: "Mission | Advancing Critical Care Through Data Science & AI",
   description:
-    "RICCC's mission at Rush University — ICU data science, AI, federated research through the CLIF consortium, pragmatic clinical trials, and interdisciplinary collaboration in Chicago critical care.",
+    "RICCC's mission at Rush University. ICU data science, AI, federated research through the CLIF consortium, pragmatic clinical trials, and interdisciplinary collaboration in Chicago critical care.",
 };
 
 /** First paragraph of MDX bio, with simple bold markers stripped — for /mission when mission_blurb is unset */
@@ -39,8 +39,8 @@ export default function MissionPage() {
               Advancing Critical Care Through Data Science
             </h1>
             <p className="text-xl text-rush-on-surface-variant max-w-2xl leading-relaxed mb-10">
-              Every ICU stay produces thousands of data points — vitals, labs, ventilator
-              settings, medication drips — but most of that information never makes it back to the
+              Every ICU stay produces thousands of data points: vitals, labs, ventilator
+              settings, and medication drips. But most of that information never makes it back to the
               bedside. We think it should. RICCC is a small, interdisciplinary group at Rush
               working to connect ICU data to better decisions: through federated research with
               the CLIF Consortium, pragmatic trials embedded in everyday workflows, and causal
@@ -126,7 +126,7 @@ export default function MissionPage() {
             <p className="text-rush-on-surface-variant leading-relaxed">
               ICU care is rich in data but poor in synthesis. Our mission is to build the methods,
               tools, and evidence to change that. At Rush, we work with investigators in emergency
-              medicine and respiratory therapy on shared trials and data science — because the
+              medicine and respiratory therapy on shared trials and data science, because the
               problems that matter at the bedside cannot be solved by any single discipline alone.
             </p>
           </aside>

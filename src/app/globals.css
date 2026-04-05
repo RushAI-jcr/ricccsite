@@ -35,7 +35,7 @@
    * Canonical UI schema: "Critical Care Editorial" (Stitch) + Rush Digital Quick Guide accents.
    * — Page canvas: bg-rush-surface.
    * — Neutral alternating bands: bg-rush-surface-container-low (most common) | -container | -container-high.
-   * — Brand-accent bands: bg-rush-sage (mission/primary CTA sections that should read as Rush green).
+   * — Section bands: prefer bg-rush-surface-container-low | -container | -container-high (no sage/mint wash).
    * — Text: text-rush-on-surface (body), text-rush-on-surface-variant (secondary), text-rush-dark-green (headings).
    * — Primary actions: bg-rush-dark-green text-white; links: text-rush-teal; chips/highlights: rush-secondary-container / rush-emerald.
    * — Borders: border-rush-outline-variant/15–30. Avoid pure white boxes on ivory; use surface-container-* for elevation.

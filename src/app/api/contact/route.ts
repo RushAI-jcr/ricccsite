@@ -54,7 +54,7 @@ function buildHtml(name: string, email: string, track: string, proposal: string,
 <head><meta charset="utf-8"></head>
 <body style="font-family: Arial, Helvetica, sans-serif; color: #1c1c13; line-height: 1.6; max-width: 600px;">
   <div style="border-bottom: 3px solid #004923; padding-bottom: 12px; margin-bottom: 24px;">
-    <strong style="color: #004923; font-size: 18px;">RICCC Lab — Collaboration Inquiry</strong>
+    <strong style="color: #004923; font-size: 18px;">RICCC Lab: Collaboration Inquiry</strong>
   </div>
   <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
     <tr>
@@ -120,7 +120,7 @@ export async function POST(req: NextRequest) {
       from: `RICCC Lab <noreply@${domain}>`,
       to: RECIPIENTS,
       replyTo: email,
-      subject: `RICCC Collaboration Inquiry — ${track}`,
+      subject: `RICCC Collaboration Inquiry: ${track}`,
       html: buildHtml(name, email, track, proposal, siteUrl),
       text: [
         `Name: ${name}`,

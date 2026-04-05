@@ -5,7 +5,7 @@ import { InquiryForm } from "@/components/contact/inquiry-form";
 export const metadata: Metadata = {
   title: "Contact & Collaborate",
   description:
-    "Partner with Juan C. Rojas (J.C. Rojas), Kevin Buell, and the RICCC Lab at Rush University, Chicago — ICU data science, AI collaborations, and trainee opportunities in critical care.",
+    "Partner with Juan C. Rojas (J.C. Rojas), Kevin Buell, and the RICCC Lab at Rush University, Chicago. ICU data science, AI collaborations, and trainee opportunities in critical care.",
 };
 
 export default function ContactPage() {
@@ -70,8 +70,8 @@ export default function ContactPage() {
                 Trainees &amp; Students
               </h3>
               <p className="text-base leading-relaxed mb-6 text-rush-dark-green/70">
-                Rush students, residents, and fellows — as well as trainees at other institutions
-                — are welcome to reach out about research opportunities. Availability varies, so
+                Rush students, residents, and fellows, as well as trainees at other institutions,
+                are welcome to reach out about research opportunities. Availability varies, so
                 get in touch to see what we have open.
               </p>
             </div>
@@ -128,7 +128,7 @@ export default function ContactPage() {
       </section>
 
       {/* Footer CTA */}
-      <section className="bg-rush-sage py-24 border-t border-rush-outline-variant/10">
+      <section className="bg-rush-surface-container-low py-24 border-t border-rush-outline-variant/10">
         <div className="max-w-screen-2xl mx-auto px-6 lg:px-8">
           <div className="max-w-2xl">
             <span className="font-mono text-xs uppercase tracking-widest text-rush-teal mb-4 block">

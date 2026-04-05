@@ -9,9 +9,9 @@ import { siteConfig } from "@/lib/config";
 import { PageHeader } from "@/components/layout/page-header";
 
 export const metadata: Metadata = {
-  title: "Publications — ICU & Critical Care Research",
+  title: "Publications | ICU & Critical Care Research",
   description:
-    "Peer-reviewed publications from Juan C. Rojas (J.C. Rojas), Kevin Buell, and the RICCC Lab — ICU data science, AI, clinical trials, and federated critical care research at Rush University.",
+    "Peer-reviewed publications from Juan C. Rojas (J.C. Rojas), Kevin Buell, and the RICCC Lab. ICU data science, AI, clinical trials, and federated critical care research at Rush University.",
 };
 
 // ISR: revalidate every 24 hours
@@ -49,7 +49,7 @@ export default async function PublicationsPage() {
       <PageHeader
         label="The Living Archive"
         title="Publications"
-        description="Papers from the lab — critical care, machine learning, federated data, and healthcare equity. Automatically synced from PubMed, OpenAlex, and Semantic Scholar."
+        description="Papers from the lab: critical care, machine learning, federated data, and healthcare equity. Automatically synced from PubMed, OpenAlex, and Semantic Scholar."
       />
 
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-8 py-24">
@@ -79,7 +79,7 @@ export default async function PublicationsPage() {
 
         <p className="font-mono text-xs uppercase tracking-widest text-rush-on-surface-variant mb-10 border-b border-rush-outline-variant/20 pb-6">
           {publications.length > 0
-            ? `${publications.length} peer-reviewed publications and preprints \u2014 ${pubmedCount} sourced from PubMed${otherCount > 0 ? `, ${otherCount} via OpenAlex / Semantic Scholar` : ""}`
+            ? `${publications.length} peer-reviewed publications and preprints: ${pubmedCount} sourced from PubMed${otherCount > 0 ? `, ${otherCount} via OpenAlex / Semantic Scholar` : ""}`
             : "Publications are actively synced from clinical literature databases."}
         </p>
 

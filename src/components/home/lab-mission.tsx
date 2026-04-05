@@ -2,16 +2,16 @@ import { RESEARCH_PILLARS } from "@/lib/research-pillars";
 
 export function LabMission() {
   return (
-    <section className="bg-rush-sage py-32 px-6 lg:px-8">
+    <section className="bg-rush-surface-container-low py-32 px-6 lg:px-8">
       <div className="max-w-screen-2xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
         {/* Left sidebar: 4 cols */}
         <div className="lg:col-span-4 lg:sticky lg:top-32 lg:h-fit">
           <h2 className="text-3xl font-bold text-rush-dark-green mb-4">
             Our Mission
           </h2>
-          <div className="h-1 w-12 bg-rush-secondary-container mb-6" />
+          <div className="h-1 w-12 bg-rush-teal mb-6" />
           <p className="text-rush-on-surface-variant leading-relaxed mb-6">
-            Critical care generates enormous data — and most of it goes unused
+            Critical care generates enormous data, and most of it goes unused
             at the bedside. RICCC at Rush University System for Health builds
             the methods, tools, and evidence to change that through pragmatic
             trials embedded in real ICU workflows, and interdisciplinary team

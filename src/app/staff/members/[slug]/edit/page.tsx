@@ -10,7 +10,7 @@ interface EditPageProps {
 
 export async function generateMetadata({ params }: EditPageProps): Promise<Metadata> {
   const { slug } = await params;
-  return { title: `Edit ${slug} — Staff Admin` };
+  return { title: `Edit ${slug} | Staff Admin` };
 }
 
 export default async function EditMemberPage({ params }: EditPageProps) {

@@ -27,7 +27,7 @@ Official Rush colors with green as primary, defined in globals.css:
 - `rush-teal` (#00A66C): Legacy Green — links, secondary buttons, accents, focus rings
 - `rush-emerald` (#5FEEA2): Vitality Green — highlights, badges
 - `rush-ivory` (#FFFBEC): Page background (Rush tertiary)
-- `rush-sage` (#DFF9EB): Section alternation bands (Rush tertiary) — use for alternating section backgrounds
+- `rush-sage` (#DFF9EB), `rush-mint` (#E8F8F0): Rush tertiary greens — available as tokens; **do not** use as full-bleed section backgrounds (use `rush-surface-container-low` / `-container` / `-container-high` instead)
 - `rush-charcoal` (#0C0C0C): Body text (Rush Black)
 - `rush-mid-gray` (#A59F9F): Secondary text (Rush Wash Gray)
 - `rush-umber` (#5F5858): Muted text (Rush Raw Umber)

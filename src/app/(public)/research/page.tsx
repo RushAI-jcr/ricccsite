@@ -5,9 +5,9 @@ import { siteConfig } from "@/lib/config";
 import { RESEARCH_PILLARS } from "@/lib/research-pillars";
 
 export const metadata: Metadata = {
-  title: "Research — ICU Data Science, AI & Clinical Trials",
+  title: "Research | ICU Data Science, AI & Clinical Trials",
   description:
-    "RICCC research at Rush University — ICU data science, artificial intelligence, pragmatic clinical trials, federated critical care data through the CLIF consortium, and AI-driven healthcare equity in Chicago.",
+    "RICCC research at Rush University: ICU data science, artificial intelligence, pragmatic clinical trials, federated critical care data through the CLIF consortium, and AI-driven healthcare equity in Chicago.",
 };
 
 function pillar(id: string) {
@@ -133,7 +133,7 @@ export default function ResearchPage() {
                 <h4 className="font-bold mb-2">Individualized Treatment Effects</h4>
                 <p className="text-sm text-white/80 leading-relaxed">
                   Models that estimate which patients are likely to benefit from
-                  a given intervention — for example, personalized oxygenation
+                  a given intervention, for example personalized oxygenation
                   targets for patients on mechanical ventilation.
                 </p>
               </div>
@@ -141,7 +141,7 @@ export default function ResearchPage() {
                 <h4 className="font-bold mb-2">Target Trial Emulation</h4>
                 <p className="text-sm text-white/80 leading-relaxed">
                   Using observational ICU data to approximate the results of
-                  trials that would be impractical or unethical to run — a way
+                  trials that would be impractical or unethical to run, a way
                   to get causal answers from the data we already have.
                 </p>
               </div>

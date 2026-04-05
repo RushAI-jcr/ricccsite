@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { MemberForm } from "@/components/staff/member-form";
 
-export const metadata: Metadata = { title: "Add Member — Staff Admin" };
+export const metadata: Metadata = { title: "Add Member | Staff Admin" };
 
 export default function NewMemberPage() {
   return (

@@ -3,9 +3,9 @@ import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 
 export const metadata: Metadata = {
-  title: "News — RICCC Lab Updates",
+  title: "News | RICCC Lab Updates",
   description:
-    "Latest news from the RICCC Lab at Rush University — ICU data science milestones, clinical trial updates, CLIF consortium developments, and team announcements.",
+    "Latest news from the RICCC Lab at Rush University. ICU data science milestones, clinical trial updates, CLIF consortium developments, and team announcements.",
 };
 
 export default function NewsPage() {
@@ -14,7 +14,7 @@ export default function NewsPage() {
       <PageHeader
         label="News & Updates"
         title="The RICCC Dispatch"
-        description="Lab announcements, grant awards, new publications, and team milestones — updated as the work unfolds."
+        description="Lab announcements, grant awards, new publications, and team milestones, updated as the work unfolds."
       />
 
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-8 py-24">

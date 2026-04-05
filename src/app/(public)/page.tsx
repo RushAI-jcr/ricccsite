@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title:
     "RICCC | ICU Data Science, AI & Clinical Trials at Rush University, Chicago",
   description:
-    "The Rush Interdisciplinary Consortium for Critical Care (RICCC) — led by Juan C. Rojas (J.C. Rojas) and Kevin Buell — advances ICU data science, AI, clinical trials, and federated research through the CLIF consortium at Rush University Medical Center in Chicago.",
+    "The Rush Interdisciplinary Consortium for Critical Care (RICCC), led by Juan C. Rojas (J.C. Rojas) and Kevin Buell, advances ICU data science, AI, clinical trials, and federated research through the CLIF consortium at Rush University Medical Center in Chicago.",
 };
 
 export default function HomePage() {

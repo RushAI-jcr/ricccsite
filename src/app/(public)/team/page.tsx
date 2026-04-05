@@ -10,9 +10,9 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Team — ICU Researchers, Data Scientists & AI",
+  title: "Team | ICU Researchers, Data Scientists & AI",
   description:
-    "Meet Juan C. Rojas (J.C. Rojas), Kevin Buell, and the RICCC Lab team — clinicians, data scientists, and trainees advancing ICU data science, AI, and clinical trials at Rush University in Chicago.",
+    "Meet Juan C. Rojas (J.C. Rojas), Kevin Buell, and the RICCC Lab team: clinicians, data scientists, and trainees advancing ICU data science, AI, and clinical trials at Rush University in Chicago.",
 };
 
 export default function TeamPage() {
@@ -83,7 +83,7 @@ export default function TeamPage() {
           </h1>
           <p className="mt-8 text-lg md:text-xl text-rush-on-surface-variant max-w-2xl leading-relaxed">
             Clinicians, data scientists, and trainees at Rush working together
-            on ICU research — from predictive models to pragmatic trials.
+            on ICU research, from predictive models to pragmatic trials.
           </p>
         </div>
       </header>
@@ -109,7 +109,7 @@ export default function TeamPage() {
       {/* ── Staff / Students / Alumni / Collaborators grid ───────────── */}
       {hasGrid && (
         <section
-          className="max-w-screen-2xl mx-auto px-6 lg:px-8 py-24 bg-rush-mint/25 border-t border-rush-outline-variant/15"
+          className="max-w-screen-2xl mx-auto px-6 lg:px-8 py-24 bg-rush-surface-container-low border-t border-rush-outline-variant/15"
           aria-label="Multidisciplinary cohort"
         >
           {/* Section header — Stitch: asymmetric gutter + bar */}
@@ -122,7 +122,7 @@ export default function TeamPage() {
             </h2>
             <div className="h-1 w-24 bg-rush-teal mt-5" aria-hidden />
             <p className="mt-6 text-base text-rush-on-surface-variant leading-relaxed max-w-2xl">
-              Biostatistics, data science, regulatory coordination, and research operations — the
+              Biostatistics, data science, regulatory coordination, and research operations: the
               engine behind RICCC&apos;s studies and federated data work.
             </p>
           </div>

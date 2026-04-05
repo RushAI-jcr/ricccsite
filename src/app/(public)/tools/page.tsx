@@ -4,9 +4,9 @@ import { siteConfig } from "@/lib/config";
 import { JsonLd } from "@/components/seo/json-ld";
 
 export const metadata: Metadata = {
-  title: "Tools — CLIF Consortium & Open ICU Data Standards",
+  title: "Tools | CLIF Consortium & Open ICU Data Standards",
   description:
-    "Open-source ICU data infrastructure from RICCC — the CLIF federated data standard (17 institutions, 62 hospitals, 800K+ patients), reproducible pipelines, and FairCareAI for healthcare AI auditing.",
+    "Open-source ICU data infrastructure from RICCC: the CLIF federated data standard (17 institutions, 62 hospitals, 800K+ patients), reproducible pipelines, and FairCareAI for healthcare AI auditing.",
 };
 
 interface TechStackItem {
@@ -27,7 +27,7 @@ const techStack: TechStackItem[] = [
     bg: "bg-rush-dark-green text-white",
     heading: "Data Standards",
     description:
-      "Rush is a founding site in the CLIF Consortium (17 institutions, 62 hospitals). We contribute to the open-source data standard — 22+ relational tables covering vitals, labs, medications, respiratory support, microbiology, and procedures.",
+      "Rush is a founding site in the CLIF Consortium (17 institutions, 62 hospitals). We contribute to the open-source data standard: 22+ relational tables covering vitals, labs, medications, respiratory support, microbiology, and procedures.",
     tags: ["CLIF", "17 Institutions", "800K+ Patients"],
     tagBg: "bg-white/20 text-white",
     variant: "dark",
@@ -58,7 +58,7 @@ const techStack: TechStackItem[] = [
 const openStandardsFeatures = [
   {
     title: "CLIF Schema",
-    description: "Relational tables for temporal clinical entities — ventilator settings, medication drips, vitals, labs, and intake/output across ICU stays.",
+    description: "Relational tables for temporal clinical entities: ventilator settings, medication drips, vitals, labs, and intake/output across ICU stays.",
   },
   {
     title: "Privacy-Preserving Federation",
@@ -76,7 +76,7 @@ const fairCareAiHighlights = [
   "Two report personas: full technical validation for data scientists, and streamlined 3–5 page governance-ready summaries.",
   "Implements the Van Calster et al. (2025) fairness visualization framework (e.g., AUROC, calibration, sensitivity/TPR, selection rate) with plain-language explanations.",
   "Aligned with the Coalition for Health AI (CHAI) Responsible AI Checkpoint 1 and RAIC governance artifacts (model card, reproducibility bundle).",
-  "Runs locally — no cloud requirement for audit computation (HIPAA-friendly workflow). Accessibility-minded outputs (WCAG-oriented typography, colorblind-safe palettes).",
+  "Runs locally with no cloud requirement for audit computation (HIPAA-friendly workflow). Accessibility-minded outputs (WCAG-oriented typography, colorblind-safe palettes).",
 ];
 
 const clifJsonLd = {
@@ -117,7 +117,7 @@ export default function ToolsPage() {
               <span className="text-rush-dark-green italic">Open Standards</span>
             </h1>
             <p className="text-xl text-rush-on-surface-variant max-w-2xl leading-relaxed">
-              The tools and data standards we use and contribute to — from federated ICU data
+              The tools and data standards we use and contribute to, from federated ICU data
               formats to open-source fairness auditing. Most of this is built in the open.
             </p>
           </div>
@@ -127,7 +127,7 @@ export default function ToolsPage() {
                 Technical Approach
               </span>
               <p className="text-sm font-medium italic text-rush-on-surface-variant leading-relaxed">
-                &ldquo;Federation, not centralization — models and results cross institutional
+                &ldquo;Federation, not centralization: models and results cross institutional
                 boundaries, raw patient data never does.&rdquo;
               </p>
             </div>
@@ -207,8 +207,8 @@ export default function ToolsPage() {
                 (Common Longitudinal ICU Format) is an open-source data standard published in{" "}
                 <em>Intensive Care Medicine</em> (2025). Rush is a founding site in the network,
                 which now spans 17 institutions, 62 hospitals, and over 800,000 ICU patients. CLIF
-                defines 22+ relational tables for the full complexity of an ICU stay — ventilator
-                settings, medication drips, vitals, labs, microbiology, and procedures — so
+                defines 22+ relational tables for the full complexity of an ICU stay, including ventilator
+                settings, medication drips, vitals, labs, microbiology, and procedures, so
                 multi-site studies can run without centralizing raw patient data.
               </p>
               <div className="space-y-6">
@@ -310,7 +310,7 @@ ORDER BY
               <div>
                 <h3 className="text-2xl font-bold text-rush-dark-green mb-2">FairCareAI</h3>
                 <p className="text-sm text-rush-on-surface-variant max-w-xl leading-relaxed">
-                  Package suggests, humans decide — FairCareAI produces metrics and visualizations for
+                  Package suggests, humans decide. FairCareAI produces metrics and visualizations for
                   review; deployment and policy choices remain with your institution and committees.
                 </p>
               </div>
