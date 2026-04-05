@@ -18,8 +18,6 @@ interface FormState {
   proposal: string;
 }
 
-const LAB_EMAIL = "info@riccc-lab.com";
-
 export function InquiryForm() {
   const [form, setForm] = useState<FormState>({
     name: "",
@@ -27,6 +25,8 @@ export function InquiryForm() {
     track: PARTNERSHIP_TRACKS[0],
     proposal: "",
   });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -35,15 +35,42 @@ export function InquiryForm() {
     setForm((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (status === "sending") return;
+    setStatus("sending");
+    setErrorMsg("");
 
-    const subject = encodeURIComponent(`RICCC Collaboration Inquiry - ${form.track}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPartnership Track: ${form.track}\n\nProposal Overview:\n${form.proposal}`
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setErrorMsg(data.error ?? "Something went wrong. Please try again.");
+        setStatus("error");
+        return;
+      }
+
+      setStatus("sent");
+    } catch {
+      setErrorMsg("Network error. Please try again or email us directly.");
+      setStatus("error");
+    }
+  }
+
+  if (status === "sent") {
+    return (
+      <div className="text-center py-12 space-y-4">
+        <p className="text-2xl font-bold text-rush-dark-green">Inquiry sent</p>
+        <p className="text-rush-on-surface-variant">
+          We will respond within three to five business days.
+        </p>
+      </div>
     );
-
-    window.location.href = `mailto:${LAB_EMAIL}?subject=${subject}&body=${body}`;
   }
 
   const inputClass =
@@ -54,6 +81,11 @@ export function InquiryForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6" aria-label="Collaboration inquiry form">
+      {/* Honeypot — hidden from humans, bots fill it in */}
+      <div className="absolute -left-[9999px]" aria-hidden="true">
+        <label htmlFor="inquiry-website">Website</label>
+        <input id="inquiry-website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label htmlFor="inquiry-name" className={labelClass}>
@@ -127,11 +159,18 @@ export function InquiryForm() {
         />
       </div>
 
+      {errorMsg && (
+        <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-sm px-3 py-2">
+          {errorMsg}
+        </p>
+      )}
+
       <button
         type="submit"
-        className="w-full bg-rush-dark-green text-white py-4 rounded-sm font-bold text-lg hover:opacity-90 transition-opacity shadow-lg"
+        disabled={status === "sending"}
+        className="w-full bg-rush-dark-green text-white py-4 rounded-sm font-bold text-lg hover:opacity-90 transition-opacity shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Submit Inquiry
+        {status === "sending" ? "Sending…" : "Submit Inquiry"}
       </button>
 
       <p className="text-[0.7rem] font-mono text-center text-rush-on-surface-variant uppercase tracking-widest">
