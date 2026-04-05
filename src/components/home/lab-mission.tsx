@@ -32,7 +32,11 @@ export function LabMission() {
                 {pillar.title}
               </h3>
               <p className="text-lg text-rush-on-surface-variant leading-relaxed">
-                {pillar.short}
+                {pillar.id === "federated" ? (
+                  <>Rush is a founding site in the <a href="https://clif-icu.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-rush-dark-green underline underline-offset-4">CLIF Consortium</a>, an open-source ICU data standard now spanning 12 institutions, 62 hospitals, and 808,000+ patients.</>
+                ) : (
+                  pillar.short
+                )}
               </p>
             </div>
           ))}
