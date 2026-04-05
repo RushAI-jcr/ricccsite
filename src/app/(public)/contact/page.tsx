@@ -5,7 +5,7 @@ import { InquiryForm } from "@/components/contact/inquiry-form";
 export const metadata: Metadata = {
   title: "Contact & Collaborate",
   description:
-    "Partner with Juan C. Rojas (J.C. Rojas), Kevin Buell, and the RICCC Lab at Rush University, Chicago. ICU data science, AI collaborations, and trainee opportunities in critical care.",
+    "Connect with RICCC at Rush University, Chicago — academic collaborations, trainees, and selective engagement with press, media, podcasts, webinars, or external partners when mission and governance align.",
 };
 
 export default function ContactPage() {
@@ -81,6 +81,77 @@ export default function ContactPage() {
                 className="inline-flex items-center gap-2 font-bold underline underline-offset-8 decoration-rush-teal transition-all hover:gap-4 text-rush-dark-green"
               >
                 Contact Us &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div className="bg-rush-surface-container-high p-10 rounded-sm flex flex-col justify-between">
+            <div>
+              <h3 className="text-2xl font-bold tracking-tight mb-4 text-rush-dark-green">
+                Press, Media &amp; Programs
+              </h3>
+              <p className="text-base leading-relaxed mb-6 text-rush-on-surface-variant">
+                We selectively engage with press, podcasts, webinars, and institutional
+                communications when topics align with our expertise. Official Rush statements
+                go through university channels.
+              </p>
+            </div>
+            <div>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-rush-dark-green">
+                  <span aria-hidden="true" className="text-rush-teal font-bold">
+                    &#10003;
+                  </span>{" "}
+                  Grounded in published work
+                </li>
+                <li className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-rush-dark-green">
+                  <span aria-hidden="true" className="text-rush-teal font-bold">
+                    &#10003;
+                  </span>{" "}
+                  Accurate attribution
+                </li>
+              </ul>
+              <a
+                href="#inquiry"
+                className="inline-flex items-center gap-2 font-bold underline underline-offset-8 decoration-rush-teal transition-all hover:gap-4 text-rush-dark-green"
+              >
+                Media Inquiry &rarr;
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-rush-surface-container p-10 rounded-sm flex flex-col justify-between">
+            <div>
+              <h3 className="text-2xl font-bold tracking-tight mb-4 text-rush-on-surface">
+                External Collaborators
+              </h3>
+              <p className="text-base leading-relaxed mb-6 text-rush-on-surface-variant">
+                We consider industry-supported research when the science, institutional review,
+                and patient-safety expectations align. We are not seeking broad commercial partnerships.
+              </p>
+            </div>
+            <div>
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-rush-dark-green">
+                  <span aria-hidden="true" className="text-rush-teal font-bold">
+                    &#10003;
+                  </span>{" "}
+                  Research integrity
+                </li>
+                <li className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-rush-dark-green">
+                  <span aria-hidden="true" className="text-rush-teal font-bold">
+                    &#10003;
+                  </span>{" "}
+                  Mission alignment
+                </li>
+              </ul>
+              <a
+                href="#inquiry"
+                className="inline-flex items-center gap-2 font-bold underline underline-offset-8 decoration-rush-teal transition-all hover:gap-4 text-rush-dark-green"
+              >
+                Inquire &rarr;
               </a>
             </div>
           </div>
