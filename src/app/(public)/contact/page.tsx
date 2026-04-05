@@ -39,8 +39,8 @@ export default function ContactPage() {
                 Academic Partnerships
               </h3>
               <p className="text-base leading-relaxed mb-6 text-rush-on-surface-variant">
-                Multi-center clinical trials, federated data studies through the CLIF Consortium,
-                and joint grant applications. Rush is a founding site in the CLIF network (17
+                Multi-center clinical trials, federated data studies through the <a href="https://clif-icu.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-rush-dark-green underline underline-offset-4">CLIF Consortium</a>,
+                and joint grant applications. Rush is a founding site in the CLIF network (12
                 institutions, 62 hospitals).
               </p>
             </div>

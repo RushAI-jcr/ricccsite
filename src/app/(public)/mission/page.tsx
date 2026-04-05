@@ -43,7 +43,7 @@ export default function MissionPage() {
               settings, and medication drips. But most of that information never makes it back to the
               bedside. We think it should. RICCC is a small, interdisciplinary group at Rush
               working to connect ICU data to better decisions: through federated research with
-              the CLIF Consortium, pragmatic trials embedded in everyday workflows, and causal
+              the <a href="https://clif-icu.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-rush-dark-green underline underline-offset-4">CLIF Consortium</a>, pragmatic trials embedded in everyday workflows, and causal
               inference methods that help clinicians personalize care for critically ill patients.
             </p>
             <div className="flex flex-wrap gap-4">

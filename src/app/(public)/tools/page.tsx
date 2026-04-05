@@ -235,12 +235,12 @@ export default function ToolsPage() {
 
             {/* Right: CLIF network stats */}
             <div className="bg-rush-surface-container-high rounded-sm overflow-hidden shadow-card">
-              <div className="bg-rush-dark-green px-8 py-6">
+              <a href="https://clif-icu.com" target="_blank" rel="noopener noreferrer" className="block bg-rush-dark-green px-8 py-6 hover:opacity-90 transition-opacity">
                 <span className="font-mono text-xs uppercase tracking-widest text-white/60 block mb-1">
                   CLIF Consortium
                 </span>
                 <p className="text-white font-bold text-lg">Network at a Glance</p>
-              </div>
+              </a>
               <div className="divide-y divide-rush-outline-variant/20">
                 {[
                   { stat: "12", label: "Institutions" },
