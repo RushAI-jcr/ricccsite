@@ -28,7 +28,7 @@ const techStack: TechStackItem[] = [
     heading: "Data Standards",
     description:
       "Rush is a founding site in the CLIF Consortium (12 institutions, 62 hospitals). We contribute to the open-source data standard: 22+ relational tables covering vitals, labs, medications, respiratory support, microbiology, and procedures.",
-    tags: ["CLIF", "17 Institutions", "808K+ Patients"],
+    tags: ["CLIF", "12 Institutions", "808K+ Patients"],
     tagBg: "bg-white/20 text-white",
     variant: "dark",
   },
