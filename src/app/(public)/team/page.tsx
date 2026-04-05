@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+
+export const revalidate = 3600; // ISR: revalidate at most every hour (on-demand via admin panel)
 import Link from "next/link";
 import { getTeamMembersByTier } from "@/lib/team";
 import { PiBio } from "@/components/team/pi-bio";

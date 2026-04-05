@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+
+export const revalidate = 3600; // ISR: revalidate at most every hour (on-demand via admin panel)
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import { RESEARCH_PILLARS } from "@/lib/research-pillars";
-import { getAllTeamMembers } from "@/lib/team";
+import { getAllTeamMembers, type TeamMember } from "@/lib/team";
 
 export const metadata: Metadata = {
   title: "Mission & Goals",
@@ -11,18 +13,15 @@ export const metadata: Metadata = {
     "Mission and research goals of RICCC at Rush University — ICU data science, federated research, clinical trials, and interdisciplinary collaboration.",
 };
 
-const piSummary: Record<string, { subtitle: string; blurb: string }> = {
-  "juan-rojas": {
-    subtitle: "Associate CMIO · Director, RHEAS · Assistant Professor",
-    blurb:
-      "Leads RICCC's data science work — ICU predictive analytics, clinical NLP, and care delivery informatics. Also directs the Rush Health Equity Analytics Studio.",
-  },
-  "kevin-buell": {
-    subtitle: "Assistant Professor, Pulmonary & Critical Care",
-    blurb:
-      "Leads RICCC's clinical trials and causal inference work, with publications in JAMA and NEJM on individualized oxygenation targets for mechanically ventilated patients.",
-  },
-};
+/** First paragraph of MDX bio, with simple bold markers stripped — for /mission when mission_blurb is unset */
+function missionBlurbFromBio(bio: string): string {
+  const block = bio.trim().split(/\n\s*\n/)[0] ?? "";
+  return block.replace(/\*\*([^*]+)\*\*/g, "$1").trim();
+}
+
+function missionSubtitle(pi: TeamMember): string {
+  return pi.missionSubtitle?.trim() || pi.role;
+}
 
 export default function MissionPage() {
   const pis = getAllTeamMembers().filter((m) => m.tier === "pi");
@@ -162,37 +161,34 @@ export default function MissionPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {pis.map((pi) => {
-              const info = piSummary[pi.slug];
-              return (
-                <div
-                  key={pi.slug}
-                  className="flex gap-6 items-start p-6 rounded-sm border border-rush-outline-variant/20 bg-rush-surface-container-low transition-all hover:border-rush-outline-variant/40"
-                >
-                  <div className="w-16 h-16 flex-shrink-0 rounded-full bg-rush-surface-container-high border border-rush-outline-variant/30 overflow-hidden">
-                    {pi.photo && (
-                      <Image
-                        src={pi.photo}
-                        alt={pi.name}
-                        width={64}
-                        height={64}
-                        sizes="64px"
-                        className="w-full h-full object-cover"
-                      />
-                    )}
-                  </div>
-                  <div className="min-w-0">
-                    <h4 className="text-lg font-bold text-rush-dark-green mb-0.5">{pi.name}</h4>
-                    <p className="font-mono text-xs text-rush-teal tracking-widest mb-3">
-                      {info?.subtitle ?? pi.role}
-                    </p>
-                    <p className="text-sm text-rush-on-surface-variant leading-relaxed">
-                      {info?.blurb ?? pi.bio.split("\n\n")[0]}
-                    </p>
-                  </div>
+            {pis.map((pi) => (
+              <div
+                key={pi.slug}
+                className="flex gap-6 items-start p-6 rounded-sm border border-rush-outline-variant/20 bg-rush-surface-container-low transition-all hover:border-rush-outline-variant/40"
+              >
+                <div className="w-16 h-16 flex-shrink-0 rounded-full bg-rush-surface-container-high border border-rush-outline-variant/30 overflow-hidden">
+                  {pi.photo && (
+                    <Image
+                      src={pi.photo}
+                      alt={pi.name}
+                      width={64}
+                      height={64}
+                      sizes="64px"
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
-              );
-            })}
+                <div className="min-w-0">
+                  <h4 className="text-lg font-bold text-rush-dark-green mb-0.5">{pi.name}</h4>
+                  <p className="font-mono text-xs text-rush-teal tracking-widest mb-3">
+                    {missionSubtitle(pi)}
+                  </p>
+                  <p className="text-sm text-rush-on-surface-variant leading-relaxed">
+                    {pi.missionBlurb?.trim() || missionBlurbFromBio(pi.bio)}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
