@@ -94,7 +94,7 @@ export default function ContactPage() {
               </h3>
               <p className="text-base leading-relaxed mb-6 text-rush-on-surface-variant">
                 Available for press, podcasts, webinars, and panels on ICU care,
-                clinical AI, health equity, and data science in healthcare.
+                clinical AI, data science, and federated research in healthcare.
               </p>
             </div>
             <div>
