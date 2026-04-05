@@ -4,10 +4,10 @@ import { LabMission } from "@/components/home/lab-mission";
 import { ResearchSpotlights } from "@/components/home/research-spotlights";
 
 export const metadata: Metadata = {
-  title:
-    "RICCC | ICU Data Science, AI & Clinical Trials at Rush University, Chicago",
+  title: "RICCC | ICU Data Science & AI Lab at Rush, Chicago",
   description:
-    "The Rush Interdisciplinary Consortium for Critical Care (RICCC), led by Juan C. Rojas (J.C. Rojas) and Kevin Buell, advances ICU data science, AI, clinical trials, and federated research through the CLIF consortium at Rush University Medical Center in Chicago.",
+    "ICU data science, AI, and clinical trials at Rush University — led by J.C. Rojas and Kevin Buell. Federated ICU research through the CLIF consortium.",
+  openGraph: { url: "/" },
 };
 
 export default function HomePage() {

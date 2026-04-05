@@ -3,9 +3,10 @@ import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 
 export const metadata: Metadata = {
-  title: "News | RICCC Lab Updates",
+  title: "News & Updates",
   description:
-    "Latest news from the RICCC Lab at Rush University. ICU data science milestones, clinical trial updates, CLIF consortium developments, and team announcements.",
+    "Latest from the RICCC Lab at Rush University — ICU data science milestones, clinical trial updates, CLIF consortium developments, and team announcements.",
+  openGraph: { url: "/news" },
 };
 
 export default function NewsPage() {

@@ -2,12 +2,14 @@ import { Github, ExternalLink } from "lucide-react";
 import { GoogleScholarIcon } from "@/components/icons/brand-social";
 import { siteConfig } from "@/lib/config";
 
+const scholarLinks = siteConfig.links.googleScholarProfiles.map((p) => ({
+  label: `Google Scholar — ${p.name}`,
+  href: p.url,
+  icon: GoogleScholarIcon,
+}));
+
 const links = [
-  {
-    label: "Google Scholar",
-    href: siteConfig.links.googleScholar,
-    icon: GoogleScholarIcon,
-  },
+  ...scholarLinks,
   {
     label: "GitHub",
     href: siteConfig.links.github,
@@ -31,7 +33,7 @@ export function SocialLinks({ className = "" }: { className?: string }) {
         const Icon = link.icon;
         return (
           <a
-            key={link.label}
+            key={link.href}
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"

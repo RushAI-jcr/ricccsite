@@ -13,9 +13,13 @@ const footerNav = [
 ];
 
 const resources = [
-  { href: siteConfig.links.googleScholar, label: "Google Scholar", external: true },
-  { href: siteConfig.links.github, label: "GitHub", external: true },
-  { href: siteConfig.links.clif, label: "CLIF Consortium", external: true },
+  ...siteConfig.links.googleScholarProfiles.map((p) => ({
+    href: p.url,
+    label: `Google Scholar (${p.name})`,
+    external: true as const,
+  })),
+  { href: siteConfig.links.github, label: "GitHub", external: true as const },
+  { href: siteConfig.links.clif, label: "CLIF Consortium", external: true as const },
 ];
 
 export function Footer() {
@@ -63,7 +67,7 @@ export function Footer() {
               </span>
               {resources.filter((item) => item.href).map((item) => (
                   <a
-                    key={item.href}
+                    key={`${item.label}-${item.href}`}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"

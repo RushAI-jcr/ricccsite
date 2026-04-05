@@ -18,15 +18,31 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description:
-    "RICCC: the Rush Interdisciplinary Consortium for Critical Care. ICU data science, AI, and clinical trials led by Juan C. Rojas (J.C. Rojas) and Kevin Buell at Rush University, Chicago.",
+    "ICU data science, AI, and clinical trials lab at Rush University, Chicago — led by J.C. Rojas and Kevin Buell. Federated research via the CLIF consortium.",
+  authors: [
+    { name: "Juan C. Rojas" },
+    { name: "Kevin Buell" },
+  ],
   metadataBase: new URL(siteConfig.url),
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: siteConfig.name,
+    url: "/",
   },
   twitter: {
     card: "summary_large_image",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

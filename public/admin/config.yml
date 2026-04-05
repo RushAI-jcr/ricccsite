@@ -71,7 +71,15 @@ collections:
         label: External Links
         widget: object
         fields:
-          - { name: google_scholar, label: Google Scholar URL, widget: string, required: false }
+          - { name: google_scholar, label: Google Scholar URL (legacy fallback), widget: string, required: false, hint: "Optional if Scholar profiles list is set" }
+          - name: google_scholar_profiles
+            label: Google Scholar profiles
+            widget: list
+            required: false
+            hint: "One row per PI (e.g. J.C. Rojas, Kevin Buell)"
+            fields:
+              - { name: name, label: Display name, widget: string }
+              - { name: url, label: Profile URL, widget: string }
           - { name: my_ncbi, label: MyNCBI URL, widget: string, required: false }
           - { name: github, label: GitHub Org URL, widget: string, required: false }
           - { name: twitter, label: X/Twitter URL, widget: string, required: false }

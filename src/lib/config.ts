@@ -16,6 +16,8 @@ interface SiteConfig {
   pi: { name: string; credentials: string; title: string; email: string };
   links: {
     googleScholar: string;
+    /** Co-PI / lab Google Scholar profile URLs (preferred over googleScholar alone). */
+    googleScholarProfiles: { name: string; url: string }[];
     myNcbi: string;
     github: string;
     twitter: string;
@@ -43,12 +45,27 @@ export const siteConfig: SiteConfig = {
     founded: siteConfigData.metrics?.founded ?? 2020,
   },
   pi: siteConfigData.pi,
-  links: {
-    googleScholar: siteConfigData.links.google_scholar,
-    myNcbi: siteConfigData.links.my_ncbi,
-    github: siteConfigData.links.github,
-    twitter: siteConfigData.links.twitter ?? "",
-    bluesky: siteConfigData.links.bluesky ?? "",
-    clif: siteConfigData.links.clif,
-  },
+  links: (() => {
+    const raw = siteConfigData.links as typeof siteConfigData.links & {
+      google_scholar_profiles?: { name: string; url: string }[];
+    };
+    const profiles =
+      raw.google_scholar_profiles?.filter((p) => p.url?.trim()) ?? [];
+    const legacy = raw.google_scholar?.trim() ?? "";
+    const googleScholarProfiles =
+      profiles.length > 0
+        ? profiles
+        : legacy
+          ? [{ name: "Google Scholar", url: legacy }]
+          : [];
+    return {
+      googleScholar: googleScholarProfiles[0]?.url ?? legacy,
+      googleScholarProfiles,
+      myNcbi: raw.my_ncbi,
+      github: raw.github,
+      twitter: raw.twitter ?? "",
+      bluesky: raw.bluesky ?? "",
+      clif: raw.clif,
+    };
+  })(),
 };

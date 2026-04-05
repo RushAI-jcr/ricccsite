@@ -7,7 +7,8 @@ import { RESEARCH_PILLARS } from "@/lib/research-pillars";
 export const metadata: Metadata = {
   title: "Research | ICU Data Science, AI & Clinical Trials",
   description:
-    "RICCC research at Rush University: ICU data science, artificial intelligence, pragmatic clinical trials, federated critical care data through the CLIF consortium, and AI-driven healthcare equity in Chicago.",
+    "ICU data science, AI, pragmatic clinical trials, and federated critical care research through the CLIF consortium at Rush University, Chicago.",
+  openGraph: { url: "/research" },
 };
 
 function pillar(id: string) {

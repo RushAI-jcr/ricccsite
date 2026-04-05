@@ -47,7 +47,7 @@ export function serializeMember(bio: string, fields: MemberFrontmatter): string 
   if (data.display_order !== undefined) {
     data.display_order = parseInt(String(data.display_order), 10) || 50;
   }
-  return matter.stringify(bio.trim() || "Bio coming soon.", data);
+  return matter.stringify(bio.trim(), data);
 }
 
 export function nameToSlug(name: string): string {

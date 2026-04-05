@@ -10,9 +10,10 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Team | ICU Researchers, Data Scientists & AI",
+  title: "Team | ICU Researchers & Data Scientists",
   description:
-    "Meet Juan C. Rojas (J.C. Rojas), Kevin Buell, and the RICCC Lab team: clinicians, data scientists, and trainees advancing ICU data science, AI, and clinical trials at Rush University in Chicago.",
+    "J.C. Rojas, Kevin Buell, and the RICCC team — clinicians and data scientists advancing ICU AI and clinical trials at Rush University, Chicago.",
+  openGraph: { url: "/team" },
 };
 
 export default function TeamPage() {
@@ -110,20 +111,23 @@ export default function TeamPage() {
       {hasGrid && (
         <section
           className="max-w-screen-2xl mx-auto px-6 lg:px-8 py-24 bg-rush-surface-container-low border-t border-rush-outline-variant/15"
-          aria-label="Multidisciplinary cohort"
+          aria-label="Heart of the lab — multidisciplinary team"
         >
           {/* Section header — Stitch: asymmetric gutter + bar */}
           <div className="ml-0 lg:ml-12 mb-14 max-w-3xl">
             <span className="font-mono text-xs uppercase tracking-widest text-rush-teal mb-3 block">
-              The full cohort
+              Heart of the lab
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-rush-dark-green leading-tight">
-              Multidisciplinary cohort
+              The colleagues at the heart of our work
             </h2>
             <div className="h-1 w-24 bg-rush-teal mt-5" aria-hidden />
             <p className="mt-6 text-base text-rush-on-surface-variant leading-relaxed max-w-2xl">
-              Biostatistics, data science, regulatory coordination, and research operations: the
-              engine behind RICCC&apos;s studies and federated data work.
+              The people profiled here are the multidisciplinary core of RICCC. They run pragmatic
+              trials, steward federated ICU data, build methods and tools, and take on
+              biostatistics, regulatory compliance, and research operations. Their skill and
+              commitment are how we move from ideas to evidence and into better care for patients
+              and partners.
             </p>
           </div>
 

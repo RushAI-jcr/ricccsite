@@ -39,7 +39,7 @@ const organizationJsonLd = {
   ],
   sameAs: [
     "https://github.com/riccc-rush-lab",
-    "https://scholar.google.com/citations?user=XXHTvWEAAAAJ",
+    ...siteConfig.links.googleScholarProfiles.map((p) => p.url),
   ],
 };
 

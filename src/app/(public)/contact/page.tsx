@@ -5,7 +5,8 @@ import { InquiryForm } from "@/components/contact/inquiry-form";
 export const metadata: Metadata = {
   title: "Contact & Collaborate",
   description:
-    "Connect with RICCC at Rush University, Chicago — academic collaborations, trainees, and selective engagement with press, media, podcasts, webinars, or external partners when mission and governance align.",
+    "Partner with J.C. Rojas, Kevin Buell, and the RICCC Lab at Rush University, Chicago — research collaborations, trainee opportunities, and ICU data science.",
+  openGraph: { url: "/contact" },
 };
 
 export default function ContactPage() {

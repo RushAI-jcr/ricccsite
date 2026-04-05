@@ -8,9 +8,10 @@ import { RESEARCH_PILLARS } from "@/lib/research-pillars";
 import { getAllTeamMembers, type TeamMember } from "@/lib/team";
 
 export const metadata: Metadata = {
-  title: "Mission | Advancing Critical Care Through Data Science & AI",
+  title: "Mission | Critical Care Data Science & AI",
   description:
-    "RICCC's mission at Rush University. ICU data science, AI, federated research through the CLIF consortium, pragmatic clinical trials, and interdisciplinary collaboration in Chicago critical care.",
+    "RICCC's mission at Rush University — ICU data science, AI, CLIF consortium federated research, pragmatic clinical trials, and collaboration in Chicago.",
+  openGraph: { url: "/mission" },
 };
 
 /** First paragraph of MDX bio, with simple bold markers stripped — for /mission when mission_blurb is unset */

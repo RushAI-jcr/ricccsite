@@ -30,7 +30,11 @@
     "inflammatory bowel disease"
   ],
   "links": {
-    "google_scholar": "https://scholar.google.com/citations?user=XXHTvWEAAAAJ",
+    "google_scholar": "https://scholar.google.com/citations?user=XXHTvWEAAAAJ&hl=en",
+    "google_scholar_profiles": [
+      { "name": "J.C. Rojas", "url": "https://scholar.google.com/citations?user=XXHTvWEAAAAJ&hl=en" },
+      { "name": "Kevin Buell", "url": "https://scholar.google.com/citations?hl=en&user=svuM0vcAAAAJ" }
+    ],
     "my_ncbi": "",
     "github": "https://github.com/riccc-rush-lab",
     "twitter": "",

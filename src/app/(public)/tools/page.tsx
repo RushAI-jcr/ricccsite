@@ -6,7 +6,8 @@ import { JsonLd } from "@/components/seo/json-ld";
 export const metadata: Metadata = {
   title: "Tools | CLIF Consortium & Open ICU Data Standards",
   description:
-    "Open-source ICU data infrastructure from RICCC: the CLIF federated data standard (12 institutions, 62 hospitals, 808K+ patients), reproducible pipelines, and FairCareAI for healthcare AI auditing.",
+    "Open-source ICU data infrastructure — CLIF federated data standard, reproducible pipelines, and FairCareAI for healthcare AI auditing at Rush University.",
+  openGraph: { url: "/tools" },
 };
 
 interface TechStackItem {

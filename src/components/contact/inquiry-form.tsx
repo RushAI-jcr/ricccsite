@@ -5,6 +5,7 @@ import { useState, type FormEvent } from "react";
 const PARTNERSHIP_TRACKS = [
   "Academic Research Partnership",
   "Industry Collaboration",
+  "Press / Media / Podcasts / Webinars Inquiry",
   "Fellowship / Trainee Program",
   "Clinical Site Collaboration",
 ] as const;
