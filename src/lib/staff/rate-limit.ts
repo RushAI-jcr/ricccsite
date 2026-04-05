@@ -4,6 +4,14 @@ const attempts = new Map<string, { count: number; resetAt: number }>();
 
 export function checkRateLimit(ip: string, max = 5, windowMs = 15 * 60_000): boolean {
   const now = Date.now();
+
+  // Lazy prune — only runs when Map grows; fine at login-only call frequency
+  if (attempts.size > 100) {
+    for (const [key, entry] of attempts) {
+      if (now > entry.resetAt) attempts.delete(key);
+    }
+  }
+
   const entry = attempts.get(ip);
   if (!entry || now > entry.resetAt) {
     attempts.set(ip, { count: 1, resetAt: now + windowMs });

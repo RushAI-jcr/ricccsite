@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { headers } from "next/headers";
 import { requireAdmin } from "@/lib/staff/auth";
 import { checkOrigin } from "@/lib/staff/csrf";
 import { auditLog } from "@/lib/staff/audit";
+import { getClientIp } from "@/lib/staff/request";
 import { processPhoto } from "@/lib/staff/photo";
-import { upsertBinaryFile, getFileSha } from "@/lib/staff/github";
+import { upsertFile, getFileSha } from "@/lib/staff/github";
 import { validateSlug } from "@/lib/staff/mdx-staff";
 
 // Required — sharp uses Node.js native binaries; Edge runtime cannot load them
@@ -20,8 +20,7 @@ export async function POST(req: NextRequest) {
   const csrfError = checkOrigin(req);
   if (csrfError) return csrfError;
 
-  const hdrs = await headers();
-  const ip = hdrs.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
+  const ip = await getClientIp();
 
   // Reject oversized requests before buffering
   const contentLength = req.headers.get("content-length");
@@ -68,7 +67,7 @@ export async function POST(req: NextRequest) {
     // Check if file already exists (get SHA for update, undefined for create)
     const existingSha = await getFileSha(photoPath) ?? undefined;
 
-    await upsertBinaryFile(photoPath, processed, `admin: upload photo for ${slug}`, existingSha);
+    await upsertFile(photoPath, processed, `admin: upload photo for ${slug}`, existingSha);
 
     const publicUrl = `/images/team/${slug}.jpg`;
     auditLog("upload", ip, slug, { size: processed.length });

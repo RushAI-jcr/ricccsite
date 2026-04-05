@@ -1,20 +1,38 @@
 import { NextRequest, NextResponse } from "next/server";
-import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { requireAdmin } from "@/lib/staff/auth";
 import { checkOrigin } from "@/lib/staff/csrf";
 import { auditLog } from "@/lib/staff/audit";
-import { listTeamFiles, upsertFile } from "@/lib/staff/github";
-import { serializeMember, nameToSlug, validateSlug } from "@/lib/staff/mdx-staff";
+import { getClientIp } from "@/lib/staff/request";
+import { listTeamFiles, getFile, upsertFile, RequestError } from "@/lib/staff/github";
+import { serializeMember, parseMember, nameToSlug, validateSlug } from "@/lib/staff/mdx-staff";
 import { MemberSchema } from "@/lib/staff/validation";
 import type { MemberFrontmatter } from "@/lib/staff/types";
 
-// GET /api/staff/members — list all team members with their slugs and SHAs
-export async function GET() {
+// GET /api/staff/members — list all team members, with optional inline frontmatter
+export async function GET(req: NextRequest) {
   const authError = await requireAdmin();
   if (authError) return authError;
 
   const files = await listTeamFiles();
+
+  // ?detail=true returns frontmatter inline (eliminates N+1 client fetches)
+  const url = new URL(req.url);
+  if (url.searchParams.get("detail") === "true") {
+    const members = await Promise.all(
+      files.map(async (f) => {
+        try {
+          const { content } = await getFile(f.path);
+          const { frontmatter } = parseMember(content);
+          return { slug: f.slug, ...frontmatter };
+        } catch {
+          return { slug: f.slug, name: f.slug, role: "", tier: "staff" as const };
+        }
+      })
+    );
+    return NextResponse.json({ data: members });
+  }
+
   return NextResponse.json({ data: files });
 }
 
@@ -26,8 +44,7 @@ export async function POST(req: NextRequest) {
   const csrfError = checkOrigin(req);
   if (csrfError) return csrfError;
 
-  const hdrs = await headers();
-  const ip = hdrs.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
+  const ip = await getClientIp();
 
   const body = await req.json().catch(() => null);
   if (!body) {
@@ -53,22 +70,32 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // One listing call — reuse for both slug uniqueness check and response
-  const files = await listTeamFiles();
-  if (files.some((f) => f.slug === slug)) {
-    return NextResponse.json(
-      { error: "conflict", message: `A member with slug "${slug}" already exists` },
-      { status: 409 }
-    );
+  try {
+    const files = await listTeamFiles();
+    if (files.some((f) => f.slug === slug)) {
+      return NextResponse.json(
+        { error: "conflict", message: `A member with slug "${slug}" already exists` },
+        { status: 409 }
+      );
+    }
+
+    const frontmatter: MemberFrontmatter = { ...fields } as MemberFrontmatter;
+    const mdxContent = serializeMember(bio ?? "", frontmatter);
+
+    await upsertFile(`content/team/${slug}.mdx`, mdxContent, `admin: create ${slug}`);
+
+    revalidatePath("/team");
+    auditLog("create", ip, slug);
+
+    return NextResponse.json({ data: { slug } }, { status: 201 });
+  } catch (err: unknown) {
+    if (err instanceof RequestError && err.status === 409) {
+      return NextResponse.json(
+        { error: "conflict", message: `A member with slug "${slug}" already exists` },
+        { status: 409 }
+      );
+    }
+    console.error("[staff] POST member error:", err);
+    return NextResponse.json({ error: "server_error", message: "Create failed" }, { status: 500 });
   }
-
-  const frontmatter: MemberFrontmatter = { ...fields } as MemberFrontmatter;
-  const mdxContent = serializeMember(bio ?? "", frontmatter);
-
-  await upsertFile(`content/team/${slug}.mdx`, mdxContent, `admin: create ${slug}`);
-
-  revalidatePath("/team");
-  auditLog("create", ip, slug);
-
-  return NextResponse.json({ data: { slug } }, { status: 201 });
 }

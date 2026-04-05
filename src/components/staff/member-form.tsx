@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { PhotoUpload } from "./PhotoUpload";
+import { PhotoUpload } from "./photo-upload";
 import { nameToSlug } from "@/lib/staff/mdx-staff";
+import { TEAM_TIERS } from "@/lib/team-constants";
 import type { MemberFrontmatter } from "@/lib/staff/types";
 
 // Discriminated union — TypeScript enforces slug in edit mode
@@ -17,8 +18,6 @@ type MemberFormProps =
       slug: string;
       initialValues: MemberFrontmatter & { bio: string };
     };
-
-const TIERS = ["pi", "staff", "student", "alumni", "collaborator"] as const;
 
 export function MemberForm(props: MemberFormProps) {
   const router = useRouter();
@@ -234,7 +233,7 @@ export function MemberForm(props: MemberFormProps) {
             required
             className={inputCls}
           >
-            {TIERS.map((t) => (
+            {TEAM_TIERS.map((t) => (
               <option key={t} value={t}>
                 {t}
               </option>

@@ -7,19 +7,25 @@ interface AdminSessionData {
   authenticated?: boolean;
 }
 
-export const sessionOptions = {
-  password: process.env.SESSION_SECRET ?? "dev-secret-change-in-production-32chars",
-  cookieName: "riccc_admin_session",
-  ttl: 60 * 60 * 8, // 8 hours
-  cookieOptions: {
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict" as const,
-    path: "/staff",
-  },
-};
+function getSessionOptions() {
+  const secret = process.env.SESSION_SECRET;
+  if (!secret && process.env.NODE_ENV === "production") {
+    throw new Error("SESSION_SECRET env var is required in production");
+  }
+  return {
+    password: secret ?? "dev-only-local-secret-minimum-32chars!",
+    cookieName: "riccc_admin_session",
+    ttl: 60 * 60 * 8, // 8 hours
+    cookieOptions: {
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict" as const,
+      path: "/",
+    },
+  };
+}
 
 export async function getSession(): Promise<IronSession<AdminSessionData>> {
-  return getIronSession<AdminSessionData>(await cookies(), sessionOptions);
+  return getIronSession<AdminSessionData>(await cookies(), getSessionOptions());
 }
 
 // Returns a 403 response if not authenticated, null if OK

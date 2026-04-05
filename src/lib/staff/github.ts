@@ -1,4 +1,5 @@
 import { Octokit } from "@octokit/rest";
+import { RequestError } from "@octokit/request-error";
 import type { GitHubFileResult, TeamFileEntry } from "./types";
 
 // Hardcoded — this is a single-repo internal tool
@@ -34,33 +35,19 @@ export async function getFile(filePath: string): Promise<GitHubFileResult> {
 
 export async function upsertFile(
   filePath: string,
-  content: string,
+  content: string | Buffer,
   message: string,
   sha?: string
 ): Promise<void> {
+  const base64 = Buffer.isBuffer(content)
+    ? content.toString("base64")
+    : Buffer.from(content, "utf-8").toString("base64");
   await octokit.rest.repos.createOrUpdateFileContents({
     owner: OWNER,
     repo: REPO,
     path: filePath,
     message,
-    content: Buffer.from(content, "utf-8").toString("base64"),
-    committer: COMMITTER,
-    ...(sha ? { sha } : {}),
-  });
-}
-
-export async function upsertBinaryFile(
-  filePath: string,
-  data: Buffer,
-  message: string,
-  sha?: string
-): Promise<void> {
-  await octokit.rest.repos.createOrUpdateFileContents({
-    owner: OWNER,
-    repo: REPO,
-    path: filePath,
-    message,
-    content: data.toString("base64"),
+    content: base64,
     committer: COMMITTER,
     ...(sha ? { sha } : {}),
   });
@@ -90,8 +77,9 @@ export async function getFileSha(filePath: string): Promise<string | null> {
     const result = await getFile(filePath);
     return result.sha;
   } catch (err: unknown) {
-    // @ts-expect-error -- Octokit error shape
-    if (err?.status === 404) return null;
+    if (err instanceof RequestError && err.status === 404) return null;
     throw err;
   }
 }
+
+export { RequestError };

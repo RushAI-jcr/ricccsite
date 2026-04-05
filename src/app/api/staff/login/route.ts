@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { headers } from "next/headers";
 import { getSession, verifyPassphrase } from "@/lib/staff/auth";
+import { checkOrigin } from "@/lib/staff/csrf";
 import { checkRateLimit } from "@/lib/staff/rate-limit";
 import { auditLog } from "@/lib/staff/audit";
+import { getClientIp } from "@/lib/staff/request";
 
 export async function POST(req: NextRequest) {
-  // Get client IP for rate limiting
-  const hdrs = await headers();
-  const ip = hdrs.get("x-forwarded-for")?.split(",")[0] ?? "unknown";
+  const csrfError = checkOrigin(req);
+  if (csrfError) return csrfError;
+
+  const ip = await getClientIp();
 
   // Rate limit: 5 attempts / 15 min per IP
   if (!checkRateLimit(ip)) {

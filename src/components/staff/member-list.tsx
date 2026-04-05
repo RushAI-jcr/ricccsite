@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import type { TeamFileEntry } from "@/lib/staff/types";
+import { TIER_DISPLAY_ORDER, TIER_LABELS } from "@/lib/team-constants";
 
 interface MemberRow {
   slug: string;
@@ -21,27 +21,10 @@ export function MemberList() {
   const fetchMembers = useCallback(async () => {
     setLoading(true);
     try {
-      // Get file list, then fetch each member's details in parallel
-      const res = await fetch("/api/staff/members");
+      const res = await fetch("/api/staff/members?detail=true");
       if (!res.ok) throw new Error("Failed to load members");
-      const { data: files } = (await res.json()) as { data: TeamFileEntry[] };
-
-      const details = await Promise.all(
-        files.map(async (f) => {
-          const r = await fetch(`/api/staff/members/${f.slug}`);
-          if (!r.ok) return null;
-          const { data } = await r.json();
-          return {
-            slug: f.slug,
-            name: data.frontmatter.name ?? f.slug,
-            role: data.frontmatter.role ?? "",
-            tier: data.frontmatter.tier ?? "staff",
-            photo: data.frontmatter.photo,
-          } as MemberRow;
-        })
-      );
-
-      setMembers(details.filter(Boolean) as MemberRow[]);
+      const { data } = (await res.json()) as { data: MemberRow[] };
+      setMembers(data);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Error loading members");
     } finally {
@@ -53,23 +36,33 @@ export function MemberList() {
     fetchMembers();
   }, [fetchMembers]);
 
-  async function handleArchive(slug: string, name: string) {
+  async function handleToggleTier(slug: string, name: string, action: "archive" | "restore") {
     if (archivingIds.has(slug)) return;
-    if (!confirm(`Archive ${name}? They will be moved to the Alumni section.`)) return;
+    const msg = action === "archive"
+      ? `Archive ${name}? They will be moved to the Alumni section.`
+      : `Restore ${name} to active member?`;
+    if (!confirm(msg)) return;
 
     setArchivingIds((prev) => new Set(prev).add(slug));
     try {
       const res = await fetch(`/api/staff/members/${slug}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "archive" }),
+        body: JSON.stringify({ action }),
       });
       if (!res.ok) {
         const d = await res.json().catch(() => ({}));
-        alert(d.message ?? "Archive failed");
+        alert(d.message ?? `${action} failed`);
         return;
       }
-      await fetchMembers();
+      // Optimistic UI update — avoids full refetch
+      setMembers((prev) =>
+        prev.map((m) =>
+          m.slug === slug
+            ? { ...m, tier: action === "archive" ? "alumni" : "staff" }
+            : m
+        )
+      );
     } finally {
       setArchivingIds((prev) => {
         const n = new Set(prev);
@@ -79,42 +72,7 @@ export function MemberList() {
     }
   }
 
-  async function handleRestore(slug: string, name: string) {
-    if (archivingIds.has(slug)) return;
-    if (!confirm(`Restore ${name} to active member?`)) return;
-
-    setArchivingIds((prev) => new Set(prev).add(slug));
-    try {
-      const res = await fetch(`/api/staff/members/${slug}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "restore" }),
-      });
-      if (!res.ok) {
-        const d = await res.json().catch(() => ({}));
-        alert(d.message ?? "Restore failed");
-        return;
-      }
-      await fetchMembers();
-    } finally {
-      setArchivingIds((prev) => {
-        const n = new Set(prev);
-        n.delete(slug);
-        return n;
-      });
-    }
-  }
-
-  const TIER_ORDER = ["pi", "staff", "student", "collaborator", "alumni"];
-  const TIER_LABELS: Record<string, string> = {
-    pi: "Principal Investigators",
-    staff: "Staff",
-    student: "Students & Trainees",
-    collaborator: "Collaborators",
-    alumni: "Alumni",
-  };
-
-  const grouped = TIER_ORDER.reduce(
+  const grouped = TIER_DISPLAY_ORDER.reduce(
     (acc, tier) => {
       acc[tier] = members.filter((m) => m.tier === tier);
       return acc;
@@ -149,7 +107,7 @@ export function MemberList() {
       </div>
 
       <div className="space-y-8">
-        {TIER_ORDER.map((tier) => {
+        {TIER_DISPLAY_ORDER.map((tier) => {
           const list = grouped[tier];
           if (list.length === 0) return null;
           return (
@@ -193,7 +151,7 @@ export function MemberList() {
                       </Link>
                       {m.tier === "alumni" ? (
                         <button
-                          onClick={() => handleRestore(m.slug, m.name)}
+                          onClick={() => handleToggleTier(m.slug, m.name, "restore")}
                           disabled={archivingIds.has(m.slug)}
                           className="text-rush-teal text-xs font-semibold hover:underline disabled:opacity-40"
                         >
@@ -201,7 +159,7 @@ export function MemberList() {
                         </button>
                       ) : (
                         <button
-                          onClick={() => handleArchive(m.slug, m.name)}
+                          onClick={() => handleToggleTier(m.slug, m.name, "archive")}
                           disabled={archivingIds.has(m.slug)}
                           className="text-rush-on-surface-variant/50 text-xs hover:text-red-500 transition-colors disabled:opacity-40"
                         >

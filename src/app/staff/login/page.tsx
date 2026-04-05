@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { LoginForm } from "@/components/staff/LoginForm";
+import { LoginForm } from "@/components/staff/login-form";
 
 export const metadata: Metadata = {
   title: "Staff Login",

@@ -1,15 +1,15 @@
 import { z } from "zod";
-import type { TeamTier } from "@/lib/team";
+import { TEAM_TIERS } from "@/lib/team-constants";
+import type { TeamTier } from "@/lib/team-constants";
+import type { MemberFrontmatter } from "@/lib/staff/types";
 
-const TIERS = ["pi", "staff", "student", "alumni", "collaborator"] as const satisfies readonly [
-  TeamTier,
-  ...TeamTier[],
-];
+// Cast for z.enum — preserves literal union type
+const TIERS_TUPLE = TEAM_TIERS as readonly [TeamTier, ...TeamTier[]];
 
 export const MemberSchema = z.object({
   name: z.string().min(1, "Name is required").max(200).regex(/^[^\n\r]+$/, "No newlines allowed"),
   role: z.string().min(1, "Role is required").max(300).regex(/^[^\n\r]+$/, "No newlines allowed"),
-  tier: z.enum(TIERS),
+  tier: z.enum(TIERS_TUPLE),
   email: z.string().email("Invalid email").max(254),
   photo: z.string().max(300).optional().or(z.literal("")),
   pubmed_name: z.string().max(100).optional().or(z.literal("")),
@@ -27,3 +27,15 @@ export const MemberSchema = z.object({
 });
 
 export type MemberInput = z.infer<typeof MemberSchema>;
+
+// Compile-time check: every required key in MemberFrontmatter (except previous_tier)
+// must also exist in the Zod schema. Catches forgotten fields at build time.
+type ZodKeys = keyof Omit<MemberInput, "bio">;
+type FrontmatterKeys = keyof Omit<MemberFrontmatter, "previous_tier">;
+type _MissingFromZod = Exclude<FrontmatterKeys, ZodKeys>;
+type _MissingFromInterface = Exclude<ZodKeys, FrontmatterKeys>;
+// These will be 'never' if both sides have the same keys — if not, you get a compile error:
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _zodKeyCheck: _MissingFromZod extends never ? true : _MissingFromZod = true;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const _ifaceKeyCheck: _MissingFromInterface extends never ? true : _MissingFromInterface = true;

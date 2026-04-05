@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 // Protected paths — all /staff/* except the login page itself, and all /api/staff/* routes
-const PUBLIC_STAFF_PATHS = ["/staff/login"];
+const PUBLIC_STAFF_PATHS = ["/staff/login", "/api/staff/login"];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;

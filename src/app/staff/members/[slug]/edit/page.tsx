@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { MemberForm } from "@/components/staff/MemberForm";
+import { MemberForm } from "@/components/staff/member-form";
 import { getFile } from "@/lib/staff/github";
 import { parseMember } from "@/lib/staff/mdx-staff";
 
