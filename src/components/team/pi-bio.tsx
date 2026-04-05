@@ -51,7 +51,7 @@ export function PiBio({ member, index = 0 }: PiBioProps) {
     ? "bg-rush-surface-container-high"
     : "bg-rush-surface-container-low";
 
-  const primaryRole = member.role.split(" | ")[0];
+  const subtitle = member.missionSubtitle ?? member.role.split(" | ")[0];
 
   return (
     <section id={member.slug} className="mb-0" aria-label={`${member.name} profile`}>
@@ -68,7 +68,7 @@ export function PiBio({ member, index = 0 }: PiBioProps) {
             </h2>
 
             <p className="font-mono text-sm text-rush-on-surface-variant mb-8 leading-relaxed">
-              {primaryRole}
+              {subtitle}
             </p>
 
             {leadParagraphs.length > 0 && (
