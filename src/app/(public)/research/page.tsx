@@ -107,7 +107,7 @@ export default function ResearchPage() {
                   CLIF Network Active
                 </p>
                 <p className="text-xs text-rush-on-surface-variant mt-1">
-                  17 institutions · 62 hospitals · 800K+ patients
+                  12 institutions · 62 hospitals · 808K+ patients
                 </p>
               </div>
             </div>

@@ -72,7 +72,7 @@ export default function MissionPage() {
               <div className="font-mono text-xs uppercase tracking-widest text-rush-teal mb-2">
                 ICU Encounters
               </div>
-              <div className="text-4xl font-bold text-rush-dark-green mb-1">800,000+</div>
+              <div className="text-4xl font-bold text-rush-dark-green mb-1">808,000+</div>
               <div className="text-sm text-rush-on-surface-variant font-medium">
                 ICU patients across CLIF network
               </div>
@@ -150,11 +150,11 @@ export default function MissionPage() {
         </div>
       </section>
 
-      {/* Faculty leadership */}
+      {/* Lab leadership */}
       <section className="bg-rush-surface-container py-32">
         <div className="max-w-screen-2xl mx-auto px-6 lg:px-8">
           <div className="mb-16">
-            <h2 className="text-4xl font-bold text-rush-dark-green mb-4">Faculty Leadership</h2>
+            <h2 className="text-4xl font-bold text-rush-dark-green mb-4">Lab Leadership</h2>
             <p className="text-rush-on-surface-variant">
               Department of Internal Medicine, Division of Pulmonary, Critical Care and Sleep
               Medicine, Rush University.

@@ -18,9 +18,9 @@ export const RESEARCH_PILLARS: ResearchPillar[] = [
     id: "federated",
     title: "Federated ICU Research",
     short:
-      "Rush is a founding site in the CLIF Consortium, an open-source ICU data standard now spanning 17 institutions, 62 hospitals, and 800,000+ patients.",
+      "Rush is a founding site in the CLIF Consortium, an open-source ICU data standard now spanning 12 institutions, 62 hospitals, and 808,000+ patients.",
     full:
-      "Good ICU research needs diverse data from many hospitals, but sharing raw patient records is a non-starter for privacy. The CLIF Consortium addresses this with a shared, open-source data standard. Rush is a founding site in the network, which now covers 17 institutions, 62 hospitals, and over 800,000 ICU patients. The idea is federation over centralization: models and results move across institutions, raw data never does.",
+      "Good ICU research needs diverse data from many hospitals, but sharing raw patient records is a non-starter for privacy. The CLIF Consortium addresses this with a shared, open-source data standard. Rush is a founding site in the network, which now covers 12 institutions, 62 hospitals, and over 808,000 ICU patients. The idea is federation over centralization: models and results move across institutions, raw data never does.",
   },
   {
     id: "trials",

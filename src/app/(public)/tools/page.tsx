@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 export const metadata: Metadata = {
   title: "Tools | CLIF Consortium & Open ICU Data Standards",
   description:
-    "Open-source ICU data infrastructure from RICCC: the CLIF federated data standard (17 institutions, 62 hospitals, 800K+ patients), reproducible pipelines, and FairCareAI for healthcare AI auditing.",
+    "Open-source ICU data infrastructure from RICCC: the CLIF federated data standard (12 institutions, 62 hospitals, 808K+ patients), reproducible pipelines, and FairCareAI for healthcare AI auditing.",
 };
 
 interface TechStackItem {
@@ -27,8 +27,8 @@ const techStack: TechStackItem[] = [
     bg: "bg-rush-dark-green text-white",
     heading: "Data Standards",
     description:
-      "Rush is a founding site in the CLIF Consortium (17 institutions, 62 hospitals). We contribute to the open-source data standard: 22+ relational tables covering vitals, labs, medications, respiratory support, microbiology, and procedures.",
-    tags: ["CLIF", "17 Institutions", "800K+ Patients"],
+      "Rush is a founding site in the CLIF Consortium (12 institutions, 62 hospitals). We contribute to the open-source data standard: 22+ relational tables covering vitals, labs, medications, respiratory support, microbiology, and procedures.",
+    tags: ["CLIF", "17 Institutions", "808K+ Patients"],
     tagBg: "bg-white/20 text-white",
     variant: "dark",
   },
@@ -85,7 +85,7 @@ const clifJsonLd = {
   name: "CLIF Consortium",
   alternateName: "Common Longitudinal ICU Format",
   description:
-    "An open-source federated ICU data standard spanning 17 institutions, 62 hospitals, and 800,000+ patients",
+    "An open-source federated ICU data standard spanning 12 institutions, 62 hospitals, and 808,000+ patients",
   url: "https://clif-icu.com",
   foundingDate: "2025",
   funder: {
@@ -206,7 +206,7 @@ export default function ToolsPage() {
                 </a>{" "}
                 (Common Longitudinal ICU Format) is an open-source data standard published in{" "}
                 <em>Intensive Care Medicine</em> (2025). Rush is a founding site in the network,
-                which now spans 17 institutions, 62 hospitals, and over 800,000 ICU patients. CLIF
+                which now spans 12 institutions, 62 hospitals, and over 808,000 ICU patients. CLIF
                 defines 22+ relational tables for the full complexity of an ICU stay, including ventilator
                 settings, medication drips, vitals, labs, microbiology, and procedures, so
                 multi-site studies can run without centralizing raw patient data.
@@ -243,9 +243,9 @@ export default function ToolsPage() {
               </div>
               <div className="divide-y divide-rush-outline-variant/20">
                 {[
-                  { stat: "17", label: "Institutions" },
+                  { stat: "12", label: "Institutions" },
                   { stat: "62", label: "Hospitals" },
-                  { stat: "800K+", label: "ICU patients" },
+                  { stat: "808K+", label: "ICU patients" },
                   { stat: "22+", label: "Relational tables" },
                 ].map(({ stat, label }) => (
                   <div key={label} className="flex items-center justify-between px-8 py-5">
