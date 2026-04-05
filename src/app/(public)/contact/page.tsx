@@ -93,8 +93,8 @@ export default function ContactPage() {
                 Press, Media &amp; Programs
               </h3>
               <p className="text-base leading-relaxed mb-6 text-rush-on-surface-variant">
-                We selectively engage with press, podcasts, webinars, and institutional
-                communications when topics align with our expertise.
+                Available for press, podcasts, webinars, and panels on ICU care,
+                clinical AI, health equity, and data science in healthcare.
               </p>
             </div>
             <div>
