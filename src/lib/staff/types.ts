@@ -14,6 +14,9 @@ export interface MemberFrontmatter {
   scholar?: string;
   website?: string;
   github?: string;
+  mission_subtitle?: string;
+  mission_blurb?: string;
+  alternate_names?: string[];
   // Stored on archive, removed on restore — not rendered by public site
   previous_tier?: TeamTier;
 }

@@ -3,8 +3,9 @@ import Link from "next/link";
 import { PageHeader } from "@/components/layout/page-header";
 
 export const metadata: Metadata = {
-  title: "News & Updates",
-  description: "Latest news, announcements, and milestones from the RICCC Lab at Rush University.",
+  title: "News — RICCC Lab Updates",
+  description:
+    "Latest news from the RICCC Lab at Rush University — ICU data science milestones, clinical trial updates, CLIF consortium developments, and team announcements.",
 };
 
 export default function NewsPage() {

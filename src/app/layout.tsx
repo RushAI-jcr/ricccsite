@@ -17,12 +17,16 @@ export const metadata: Metadata = {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
-  description: siteConfig.tagline,
-  metadataBase: new URL("https://ricccsite.vercel.app"),
+  description:
+    "RICCC — the Rush Interdisciplinary Consortium for Critical Care. ICU data science, AI, and clinical trials led by Juan C. Rojas (J.C. Rojas) and Kevin Buell at Rush University, Chicago.",
+  metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: siteConfig.name,
+  },
+  twitter: {
+    card: "summary_large_image",
   },
 };
 

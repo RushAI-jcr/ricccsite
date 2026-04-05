@@ -3,6 +3,7 @@ import siteConfigData from "../../content/site-config.json";
 interface SiteConfig {
   name: string;
   fullName: string;
+  url: string;
   institution: string;
   department: string;
   address: string;
@@ -26,6 +27,7 @@ interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: siteConfigData.lab_name,
   fullName: siteConfigData.full_name,
+  url: "https://riccc-lab.com",
   institution: "Rush University System for Health",
   department: "Department of Medicine",
   address: "Chicago, IL",

@@ -8,9 +8,9 @@ import { RESEARCH_PILLARS } from "@/lib/research-pillars";
 import { getAllTeamMembers, type TeamMember } from "@/lib/team";
 
 export const metadata: Metadata = {
-  title: "Mission & Goals",
+  title: "Mission — Advancing Critical Care Through Data Science & AI",
   description:
-    "Mission and research goals of RICCC at Rush University — ICU data science, federated research, clinical trials, and interdisciplinary collaboration.",
+    "RICCC's mission at Rush University — ICU data science, AI, federated research through the CLIF consortium, pragmatic clinical trials, and interdisciplinary collaboration in Chicago critical care.",
 };
 
 /** First paragraph of MDX bio, with simple bold markers stripped — for /mission when mission_blurb is unset */

@@ -9,8 +9,9 @@ import { siteConfig } from "@/lib/config";
 import { PageHeader } from "@/components/layout/page-header";
 
 export const metadata: Metadata = {
-  title: "Publications",
-  description: "Publications from the RICCC Lab",
+  title: "Publications — ICU & Critical Care Research",
+  description:
+    "Peer-reviewed publications from Juan C. Rojas (J.C. Rojas), Kevin Buell, and the RICCC Lab — ICU data science, AI, clinical trials, and federated critical care research at Rush University.",
 };
 
 // ISR: revalidate every 24 hours

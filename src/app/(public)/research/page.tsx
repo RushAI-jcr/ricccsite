@@ -5,8 +5,9 @@ import { siteConfig } from "@/lib/config";
 import { RESEARCH_PILLARS } from "@/lib/research-pillars";
 
 export const metadata: Metadata = {
-  title: "Research",
-  description: "Research focus areas at the RICCC Lab",
+  title: "Research — ICU Data Science, AI & Clinical Trials",
+  description:
+    "RICCC research at Rush University — ICU data science, artificial intelligence, pragmatic clinical trials, federated critical care data through the CLIF consortium, and AI-driven healthcare equity in Chicago.",
 };
 
 function pillar(id: string) {

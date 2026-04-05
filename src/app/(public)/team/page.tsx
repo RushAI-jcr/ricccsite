@@ -6,10 +6,13 @@ import { getTeamMembersByTier } from "@/lib/team";
 import { PiBio } from "@/components/team/pi-bio";
 import { StaffGrid } from "@/components/team/staff-grid";
 import { CompactMemberGrid } from "@/components/team/compact-member-grid";
+import { JsonLd } from "@/components/seo/json-ld";
+import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
-  title: "Team",
-  description: "Meet the RICCC Lab team — a multidisciplinary group of clinicians, data scientists, and trainees advancing critical care through computation.",
+  title: "Team — ICU Researchers, Data Scientists & AI",
+  description:
+    "Meet Juan C. Rojas (J.C. Rojas), Kevin Buell, and the RICCC Lab team — clinicians, data scientists, and trainees advancing ICU data science, AI, and clinical trials at Rush University in Chicago.",
 };
 
 export default function TeamPage() {
@@ -28,8 +31,41 @@ export default function TeamPage() {
     grouped.alumni.length > 0 ||
     grouped.collaborator.length > 0;
 
+  const piSchemas = grouped.pi.map((pi) => {
+    const sameAs: string[] = [];
+    if (pi.scholar) sameAs.push(pi.scholar);
+    if (pi.orcid) sameAs.push(`https://orcid.org/${pi.orcid}`);
+    if (pi.linkedin) sameAs.push(pi.linkedin);
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: pi.name.replace(/,.*$/, ""),
+      ...(pi.alternateNames && { alternateName: pi.alternateNames }),
+      jobTitle: pi.role.split(" | ")[0],
+      worksFor: {
+        "@type": "ResearchOrganization",
+        name: "RICCC",
+        parentOrganization: {
+          "@type": "CollegeOrUniversity",
+          name: "Rush University System for Health",
+        },
+      },
+      affiliation: {
+        "@type": "CollegeOrUniversity",
+        name: "Rush University System for Health",
+      },
+      url: `${siteConfig.url}/team#${pi.slug}`,
+      ...(pi.photo && { image: `${siteConfig.url}${pi.photo}` }),
+      ...(sameAs.length > 0 && { sameAs }),
+    };
+  });
+
   return (
     <main className="bg-rush-surface min-h-screen">
+      {grouped.pi.map((pi, i) => (
+        <JsonLd key={pi.slug} data={piSchemas[i]} />
+      ))}
       {/* ── Hero header ─────────────────────────────────────────────── */}
       <header className="pt-32 pb-20 max-w-screen-2xl mx-auto px-8">
         <div className="ml-0 lg:ml-12">

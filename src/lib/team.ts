@@ -21,6 +21,9 @@ export interface TeamMember {
   website?: string;
   github?: string;
   displayOrder: number;
+  missionSubtitle?: string;
+  missionBlurb?: string;
+  alternateNames?: string[];
 }
 
 const tierOrder: Record<TeamTier, number> = {
@@ -61,6 +64,9 @@ export function getAllTeamMembers(): TeamMember[] {
       website: data.website || undefined,
       github: data.github || undefined,
       displayOrder: data.display_order ?? 50,
+      missionSubtitle: data.mission_subtitle || undefined,
+      missionBlurb: data.mission_blurb || undefined,
+      alternateNames: data.alternate_names || undefined,
     };
   });
 

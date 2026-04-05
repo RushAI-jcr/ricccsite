@@ -5,7 +5,7 @@ import { InquiryForm } from "@/components/contact/inquiry-form";
 export const metadata: Metadata = {
   title: "Contact & Collaborate",
   description:
-    "Partner with the RICCC Lab at Rush University — academic research and trainee opportunities in critical care.",
+    "Partner with Juan C. Rojas (J.C. Rojas), Kevin Buell, and the RICCC Lab at Rush University, Chicago — ICU data science, AI collaborations, and trainee opportunities in critical care.",
 };
 
 export default function ContactPage() {

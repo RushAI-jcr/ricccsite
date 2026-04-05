@@ -50,7 +50,7 @@ export function PiBio({ member, index = 0 }: PiBioProps) {
   const primaryRole = member.role.split(" | ")[0];
 
   return (
-    <section className="mb-0" aria-label={`${member.name} profile`}>
+    <section id={member.slug} className="mb-0" aria-label={`${member.name} profile`}>
       <div className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-stretch gap-0`}>
         {/* Text panel */}
         <div className={`lg:w-3/5 ${contentBg} p-10 md:p-16 flex flex-col justify-center`}>

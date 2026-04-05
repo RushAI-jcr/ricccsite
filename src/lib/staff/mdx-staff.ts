@@ -16,6 +16,9 @@ const FIELD_ORDER: (keyof MemberFrontmatter)[] = [
   "website",
   "github",
   "display_order",
+  "mission_subtitle",
+  "mission_blurb",
+  "alternate_names",
   "previous_tier",
 ];
 

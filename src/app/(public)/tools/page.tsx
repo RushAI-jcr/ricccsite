@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
+import { JsonLd } from "@/components/seo/json-ld";
 
 export const metadata: Metadata = {
-  title: "Tools & Infrastructure",
+  title: "Tools — CLIF Consortium & Open ICU Data Standards",
   description:
-    "The open-source data infrastructure powering RICCC — CLIF federated standards, reproducible pipelines, and FairCareAI for healthcare AI fairness auditing.",
+    "Open-source ICU data infrastructure from RICCC — the CLIF federated data standard (17 institutions, 62 hospitals, 800K+ patients), reproducible pipelines, and FairCareAI for healthcare AI auditing.",
 };
 
 interface TechStackItem {
@@ -78,9 +79,31 @@ const fairCareAiHighlights = [
   "Runs locally — no cloud requirement for audit computation (HIPAA-friendly workflow). Accessibility-minded outputs (WCAG-oriented typography, colorblind-safe palettes).",
 ];
 
+const clifJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ResearchProject",
+  name: "CLIF Consortium",
+  alternateName: "Common Longitudinal ICU Format",
+  description:
+    "An open-source federated ICU data standard spanning 17 institutions, 62 hospitals, and 800,000+ patients",
+  url: "https://clif-icu.com",
+  foundingDate: "2025",
+  funder: {
+    "@type": "ResearchOrganization",
+    name: "RICCC",
+    url: siteConfig.url,
+  },
+  memberOf: {
+    "@type": "ResearchOrganization",
+    name: "RICCC",
+    url: siteConfig.url,
+  },
+};
+
 export default function ToolsPage() {
   return (
     <main className="bg-rush-surface text-rush-on-surface">
+      <JsonLd data={clifJsonLd} />
       {/* Hero */}
       <header className="pt-32 pb-16 max-w-screen-2xl mx-auto px-6 lg:px-8 mb-0">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">

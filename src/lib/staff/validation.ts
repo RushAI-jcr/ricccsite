@@ -23,6 +23,9 @@ export const MemberSchema = z.object({
   scholar: z.string().url("Must be a URL").startsWith("https://").optional().or(z.literal("")),
   website: z.string().url("Must be a URL").startsWith("https://").optional().or(z.literal("")),
   github: z.string().url("Must be a URL").startsWith("https://").optional().or(z.literal("")),
+  mission_subtitle: z.string().max(300).optional().or(z.literal("")),
+  mission_blurb: z.string().max(1000).optional().or(z.literal("")),
+  alternate_names: z.array(z.string().max(100)).optional(),
   bio: z.string().max(5000).optional().default(""),
 });
 
