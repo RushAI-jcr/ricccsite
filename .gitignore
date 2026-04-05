@@ -42,3 +42,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE / editor
+.cursor/
+.vscode/
+.idea/
+
+# Playwright MCP temp files
+.playwright-mcp/
+
+# Stitch exports
+stitch-exports/
+stitch.md
