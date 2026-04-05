@@ -3,7 +3,7 @@ import { RequestError } from "@octokit/request-error";
 import type { GitHubFileResult, TeamFileEntry } from "./types";
 
 // Hardcoded — this is a single-repo internal tool
-const OWNER = "riccc-rush-lab";
+const OWNER = process.env.GITHUB_REPO_OWNER ?? "RushAI-jcr";
 const REPO = "ricccsite";
 
 // Module-level singleton — reused across warm Lambda invocations

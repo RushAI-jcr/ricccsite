@@ -105,7 +105,7 @@ export function PiBio({ member, index = 0 }: PiBioProps) {
               alt={`Portrait of ${member.name}`}
               fill
               sizes="(max-width: 1024px) 100vw, 40vw"
-              className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              className="object-cover"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-rush-surface-container-high min-h-[280px]">
