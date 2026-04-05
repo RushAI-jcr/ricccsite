@@ -57,7 +57,7 @@ export function PiBio({ member, index = 0 }: PiBioProps) {
     <section id={member.slug} className="mb-0" aria-label={`${member.name} profile`}>
       <div className={`flex flex-col ${isReversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-stretch gap-0`}>
         {/* Text panel */}
-        <div className={`lg:w-3/5 ${contentBg} p-10 md:p-16 flex flex-col justify-center`}>
+        <div className={`lg:w-2/3 ${contentBg} p-10 md:p-16 flex flex-col justify-center`}>
           <div className={`max-w-xl ${isReversed ? "mr-auto" : "ml-auto"}`}>
             <span className="font-mono text-xs uppercase tracking-widest text-rush-teal mb-4 block">
               Principal Investigator
@@ -104,13 +104,13 @@ export function PiBio({ member, index = 0 }: PiBioProps) {
         </div>
 
         {/* Photo panel */}
-        <div className="lg:w-2/5 h-[280px] lg:h-auto overflow-hidden relative bg-rush-surface-container">
+        <div className="lg:w-1/3 h-[280px] lg:h-auto overflow-hidden relative bg-rush-surface-container">
           {member.photo ? (
             <Image
               src={member.photo}
               alt={`Portrait of ${member.name}`}
               fill
-              sizes="(max-width: 1024px) 100vw, 40vw"
+              sizes="(max-width: 1024px) 100vw, 33vw"
               className="object-cover"
             />
           ) : (
