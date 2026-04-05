@@ -18,6 +18,7 @@ const cspHeader = `
 `;
 
 const nextConfig: NextConfig = {
+  serverExternalPackages: ["sharp"],
   async redirects() {
     return [{ source: "/software", destination: "/tools", permanent: true }];
   },
@@ -32,6 +33,15 @@ const nextConfig: NextConfig = {
           { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
           { key: "Permissions-Policy", value: "camera=(), microphone=()" },
           { key: "X-DNS-Prefetch-Control", value: "on" },
+        ],
+      },
+      {
+        // Staff admin panel — never cached, never indexed
+        source: "/staff/:path*",
+        headers: [
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+          { key: "Cache-Control", value: "no-store, no-cache, private" },
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
         ],
       },
     ];
