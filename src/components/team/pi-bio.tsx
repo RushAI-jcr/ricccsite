@@ -29,19 +29,23 @@ function extractInterests(bio: string): string[] {
     .filter(Boolean);
 }
 
-/** First non-interests paragraph of the bio. */
-function getLeadParagraph(bio: string): string {
+/** All bio paragraphs before **Education** or similar headers. */
+function getLeadParagraphs(bio: string): string[] {
   const blocks = bio.split("\n\n");
-  if (blocks.length > 1 && /research interests include/i.test(blocks[0])) {
-    return (blocks[1] ?? blocks[0]).trim();
+  const lead: string[] = [];
+  for (const block of blocks) {
+    const trimmed = block.trim();
+    if (!trimmed || /^\*\*/.test(trimmed) || /^-\s/.test(trimmed)) break;
+    if (/^research interests include/i.test(trimmed)) continue;
+    lead.push(trimmed);
   }
-  return blocks[0].trim();
+  return lead;
 }
 
 export function PiBio({ member, index = 0 }: PiBioProps) {
   const isReversed = index % 2 !== 0;
   const interests = extractInterests(member.bio);
-  const leadParagraph = getLeadParagraph(member.bio);
+  const leadParagraphs = getLeadParagraphs(member.bio);
 
   const contentBg = isReversed
     ? "bg-rush-surface-container-high"
@@ -67,9 +71,11 @@ export function PiBio({ member, index = 0 }: PiBioProps) {
               {primaryRole}
             </p>
 
-            {leadParagraph && (
+            {leadParagraphs.length > 0 && (
               <div className="space-y-4 text-rush-on-surface/80 leading-relaxed mb-8">
-                <p className="line-clamp-4">{leadParagraph}</p>
+                {leadParagraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
               </div>
             )}
 
