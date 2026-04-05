@@ -74,14 +74,14 @@ export default function MissionPage() {
               </div>
               <div className="text-4xl font-bold text-rush-dark-green mb-1">808,000+</div>
               <div className="text-sm text-rush-on-surface-variant font-medium">
-                ICU patients across CLIF network
+                ICU patients across <a href="https://clif-icu.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">CLIF network</a>
               </div>
             </div>
             <div className="border-l border-rush-dark-green/10 pl-6">
               <div className="font-mono text-xs uppercase tracking-widest text-rush-teal mb-2">
-                CLIF Network
+                <a href="https://clif-icu.com" target="_blank" rel="noopener noreferrer" className="hover:underline">CLIF Network</a>
               </div>
-              <div className="text-4xl font-bold text-rush-dark-green mb-1">17</div>
+              <div className="text-4xl font-bold text-rush-dark-green mb-1">12</div>
               <div className="text-sm text-rush-on-surface-variant font-medium">
                 Institutions, 62 hospitals
               </div>

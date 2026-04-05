@@ -105,9 +105,9 @@ export default function ResearchPage() {
                 <p className="font-mono text-xs uppercase tracking-widest text-rush-on-surface-variant mb-2">
                   Network Status
                 </p>
-                <p className="text-base font-bold text-rush-dark-green">
+                <a href="https://clif-icu.com" target="_blank" rel="noopener noreferrer" className="text-base font-bold text-rush-dark-green hover:underline block">
                   CLIF Network Active
-                </p>
+                </a>
                 <p className="text-xs text-rush-on-surface-variant mt-1">
                   12 institutions · 62 hospitals · 808K+ patients
                 </p>
