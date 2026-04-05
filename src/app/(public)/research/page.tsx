@@ -86,7 +86,9 @@ export default function ResearchPage() {
                 {pillar("federated").title}
               </h2>
               <p className="text-rush-on-surface-variant leading-relaxed mb-6">
-                {pillar("federated").full}
+                Good ICU research needs diverse data from many hospitals, but sharing raw patient records is a non-starter for privacy. The{" "}
+                <a href="https://clif-icu.com" target="_blank" rel="noopener noreferrer" className="font-semibold text-rush-dark-green underline underline-offset-4">CLIF Consortium</a>{" "}
+                addresses this with a shared, open-source data standard. Rush is a founding site in the network, which now covers 12 institutions, 62 hospitals, and over 808,000 ICU patients. The idea is federation over centralization: models and results move across institutions, raw data never does.
               </p>
               <a
                 href={siteConfig.links.clif}
