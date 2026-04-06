@@ -6,7 +6,7 @@ const isDev = process.env.NODE_ENV === "development";
 // https://nextjs.org/docs/app/guides/content-security-policy#without-nonces
 const cspHeader = `
   default-src 'self';
-  script-src 'self' https://unpkg.com https://va.vercel-scripts.com ${isDev ? "'unsafe-eval' 'unsafe-inline'" : ""};
+  script-src 'self' https://va.vercel-scripts.com ${isDev ? "'unsafe-eval' 'unsafe-inline'" : ""};
   style-src 'self' 'unsafe-inline';
   img-src 'self' data: blob:;
   font-src 'self' https://fonts.gstatic.com;

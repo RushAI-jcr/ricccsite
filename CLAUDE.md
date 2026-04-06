@@ -7,18 +7,18 @@
 - Next.js 15 (App Router) + TypeScript
 - Tailwind CSS v4 + shadcn/ui
 - Vercel hosting with Analytics + Speed Insights
-- Sveltia CMS at /admin/ (git-backed, no database)
+- Staff admin panel at /staff/ (passphrase-protected, commits to GitHub via API)
 - PubMed E-utilities API for publications (author-name search)
 - Content stored as MDX/JSON files in content/ directory
 
-## Content Management (Sveltia CMS)
-- GitHub org: https://github.com/riccc-rush-lab — site repository `ricccsite` (Sveltia commits here)
-- CMS at /admin/ — edits commit directly to GitHub repo
-- Auth: GitHub OAuth (editors need GitHub account + repo write access)
-- Team members: content/team/*.mdx (editable via CMS)
-- Research spotlights: content/spotlights.json (editable via CMS)
-- Site config: content/site-config.json (editable via CMS)
-- Photos: public/images/team/ (uploaded via CMS media picker)
+## Staff Admin Panel
+- Login: /staff/login (shared passphrase, 8-hour session)
+- Manage team members: /staff/members (add, edit, archive, upload photos)
+- All edits commit directly to GitHub repo via Octokit + GITHUB_BOT_TOKEN
+- Team members: content/team/*.mdx
+- Research spotlights: content/spotlights.json (edit JSON directly or via code)
+- Site config: content/site-config.json (edit JSON directly or via code)
+- Photos: public/images/team/ (uploaded via staff panel, auto-resized to 400x400)
 
 ## Rush Brand System (from Rush Digital Quick Guide)
 Official Rush colors with green as primary, defined in globals.css:

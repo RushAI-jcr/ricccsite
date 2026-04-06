@@ -23,8 +23,6 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  if (pathname?.startsWith("/admin")) return null;
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-rush-surface/80 backdrop-blur-xl shadow-card">
       <div className="flex items-center justify-between w-full max-w-screen-2xl mx-auto px-6 lg:px-8 h-16">

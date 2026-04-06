@@ -7,7 +7,7 @@ Website for the Rush Interdisciplinary Consortium for Critical Care Trials and D
 - **Framework:** Next.js 16 (App Router) + TypeScript
 - **Styling:** Tailwind CSS v4 + shadcn/ui
 - **Hosting:** Vercel (Analytics + Speed Insights)
-- **CMS:** Sveltia CMS at `/admin/` (git-backed)
+- **Admin:** Staff panel at `/staff/` (passphrase-protected, GitHub-backed)
 - **Email:** Resend (contact form delivery)
 - **Publications:** PubMed + Semantic Scholar + OpenAlex APIs
 

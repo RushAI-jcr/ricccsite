@@ -65,54 +65,6 @@ export default function MissionPage() {
         </div>
       </section>
 
-      {/* Metrics strip */}
-      <section className="bg-rush-surface-container py-24">
-        <div className="max-w-screen-2xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
-            <div className="border-l border-rush-dark-green/10 pl-6">
-              <div className="font-mono text-xs uppercase tracking-widest text-rush-teal mb-2">
-                ICU Encounters
-              </div>
-              <div className="text-4xl font-bold text-rush-dark-green mb-1">808,000+</div>
-              <div className="text-sm text-rush-on-surface-variant font-medium">
-                ICU patients across <a href="https://clif-icu.com" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2">CLIF network</a>
-              </div>
-            </div>
-            <div className="border-l border-rush-dark-green/10 pl-6">
-              <div className="font-mono text-xs uppercase tracking-widest text-rush-teal mb-2">
-                <a href="https://clif-icu.com" target="_blank" rel="noopener noreferrer" className="hover:underline">CLIF Network</a>
-              </div>
-              <div className="text-4xl font-bold text-rush-dark-green mb-1">12</div>
-              <div className="text-sm text-rush-on-surface-variant font-medium">
-                Institutions, 62 hospitals
-              </div>
-            </div>
-            <div className="border-l border-rush-dark-green/10 pl-6">
-              <div className="font-mono text-xs uppercase tracking-widest text-rush-teal mb-2">
-                Publications
-              </div>
-              <div className="text-4xl font-bold text-rush-dark-green mb-1">
-                {siteConfig.metrics.publications}+
-              </div>
-              <div className="text-sm text-rush-on-surface-variant font-medium">
-                Peer-reviewed works
-              </div>
-            </div>
-            <div className="border-l border-rush-dark-green/10 pl-6">
-              <div className="font-mono text-xs uppercase tracking-widest text-rush-teal mb-2">
-                Active Projects
-              </div>
-              <div className="text-4xl font-bold text-rush-dark-green mb-1">
-                {siteConfig.metrics.activeProjects}
-              </div>
-              <div className="text-sm text-rush-on-surface-variant font-medium">
-                Ongoing studies
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Mission editorial */}
       <section id="mission" className="py-32 max-w-screen-2xl mx-auto px-6 lg:px-8 scroll-mt-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">

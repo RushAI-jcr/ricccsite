@@ -1,6 +1,6 @@
 /**
  * GitHub is stored in team MDX as a bare username (matches public link builder).
- * Staff/Sveltia may submit a full https://github.com/... profile URL — normalize here.
+ * Staff panel may submit a full https://github.com/... profile URL — normalize here.
  */
 
 const GITHUB_USERNAME_RE = /^[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/;

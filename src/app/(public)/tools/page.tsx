@@ -21,6 +21,10 @@ interface TechStackItem {
   variant: "dark" | "light";
 }
 
+const CLIF_DATA_DICTIONARY = "https://clif-icu.com/data-dictionary/data-dictionary-2.1.0";
+const CLIF_GITHUB = "https://github.com/clif-consortium";
+const CLIF_TOOLS = "https://clif-icu.com/tools";
+
 const techStack: TechStackItem[] = [
   {
     id: "data",
@@ -28,7 +32,7 @@ const techStack: TechStackItem[] = [
     bg: "bg-rush-dark-green text-white",
     heading: "Data Standards",
     description:
-      "Rush is a founding site in the CLIF Consortium (12 institutions, 62 hospitals). We contribute to the open-source data standard: 22+ relational tables covering vitals, labs, medications, respiratory support, microbiology, and procedures.",
+      "Rush is a founding site in the CLIF Consortium. CLIF is an open-source standard for longitudinal ICU data and privacy-preserving multicenter research — purpose-built so sites spend less time on one-off harmonization. The network spans 12 institutions, 62 hospitals, and 808K+ patients (figures as published on clif-icu.com).",
     tags: ["CLIF", "12 Institutions", "808K+ Patients"],
     tagBg: "bg-white/20 text-white",
     variant: "dark",
@@ -58,16 +62,19 @@ const techStack: TechStackItem[] = [
 
 const openStandardsFeatures = [
   {
-    title: "CLIF Schema",
-    description: "Relational tables for temporal clinical entities: ventilator settings, medication drips, vitals, labs, and intake/output across ICU stays.",
+    title: "Standardized longitudinal format",
+    description:
+      "A harmonized relational model for the temporal complexity of ICU care — vitals, labs, medications, respiratory support, microbiology, procedures, and more. Standardized variables and terminologies (including mCIDE) support reproducible multicenter work.",
   },
   {
-    title: "Privacy-Preserving Federation",
-    description: "Multi-center research that never requires pooling raw patient data across institutional boundaries.",
+    title: "Privacy-preserving federation",
+    description:
+      "Federated analytics: only aggregate results cross institutional boundaries. Patient-level data stays at each site — collaboration without central raw-data repositories.",
   },
   {
-    title: "EHR Extraction Pipelines",
-    description: "Site-specific ETL pipelines that map local EHR data into the shared CLIF format for cross-institutional analysis.",
+    title: "Open pipelines & tools",
+    description:
+      "Site-specific ETL maps local EHR data into CLIF; specifications, pipelines, and related tooling are open source under Apache License 2.0 on GitHub, alongside the published data dictionary.",
   },
 ];
 
@@ -86,7 +93,7 @@ const clifJsonLd = {
   name: "CLIF Consortium",
   alternateName: "Common Longitudinal ICU Format",
   description:
-    "An open-source federated ICU data standard spanning 12 institutions, 62 hospitals, and 808,000+ patients",
+    "Open-source longitudinal ICU data standard for privacy-preserving multicenter research: harmonized relational model, federated analytics (aggregate results only), 12 institutions, 62 hospitals, 808K+ patients; Apache 2.0 tools and ETL on GitHub.",
   url: "https://clif-icu.com",
   foundingDate: "2025",
   funder: {
@@ -205,12 +212,22 @@ export default function ToolsPage() {
                 >
                   CLIF Consortium
                 </a>{" "}
-                (Common Longitudinal ICU Format) is an open-source data standard published in{" "}
-                <em>Intensive Care Medicine</em> (2025). Rush is a founding site in the network,
-                which now spans 12 institutions, 62 hospitals, and over 808,000 ICU patients. CLIF
-                defines 22+ relational tables for the full complexity of an ICU stay, including ventilator
-                settings, medication drips, vitals, labs, microbiology, and procedures, so
-                multi-site studies can run without centralizing raw patient data.
+                (Common Longitudinal ICU data Format) is an open-source standard for longitudinal ICU
+                data and privacy-preserving multicenter research, published in{" "}
+                <em>Intensive Care Medicine</em> (2025). Rush is a founding site. The network spans 12
+                institutions, 62 hospitals, and 808K+ ICU patients (as published on clif-icu.com). The
+                harmonized relational model captures the temporal depth of an ICU stay so analyses can
+                be written once and run across sites without centralizing raw patient data. The
+                canonical table and variable documentation lives in the{" "}
+                <a
+                  href={CLIF_DATA_DICTIONARY}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-rush-dark-green underline underline-offset-4"
+                >
+                  CLIF 2.1.0 data dictionary
+                </a>
+                .
               </p>
               <div className="space-y-6">
                 {openStandardsFeatures.map((feature) => (
@@ -247,7 +264,7 @@ export default function ToolsPage() {
                   { stat: "12", label: "Institutions" },
                   { stat: "62", label: "Hospitals" },
                   { stat: "808K+", label: "ICU patients" },
-                  { stat: "22+", label: "Relational tables" },
+                  { stat: "2.1.0", label: "Data dictionary" },
                 ].map(({ stat, label }) => (
                   <div key={label} className="flex items-center justify-between px-8 py-5">
                     <span className="text-rush-on-surface-variant text-sm">{label}</span>
@@ -255,7 +272,7 @@ export default function ToolsPage() {
                   </div>
                 ))}
               </div>
-              <div className="px-8 py-6 bg-rush-surface-container border-t border-rush-outline-variant/20">
+              <div className="px-8 py-6 bg-rush-surface-container border-t border-rush-outline-variant/20 space-y-3">
                 <a
                   href={siteConfig.links.clif}
                   target="_blank"
@@ -264,6 +281,34 @@ export default function ToolsPage() {
                 >
                   Visit clif-icu.com &rarr;
                 </a>
+                <p className="text-sm text-rush-on-surface-variant leading-relaxed">
+                  <a
+                    href={CLIF_DATA_DICTIONARY}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-rush-dark-green underline underline-offset-4"
+                  >
+                    Data dictionary
+                  </a>
+                  {" · "}
+                  <a
+                    href={CLIF_GITHUB}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-rush-dark-green underline underline-offset-4"
+                  >
+                    GitHub
+                  </a>
+                  {" · "}
+                  <a
+                    href={CLIF_TOOLS}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-rush-dark-green underline underline-offset-4"
+                  >
+                    Open-source tools
+                  </a>
+                </p>
               </div>
             </div>
           </div>

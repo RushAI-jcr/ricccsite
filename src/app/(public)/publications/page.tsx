@@ -76,6 +76,21 @@ export default async function PublicationsPage() {
         </div>
 
         <PubFilters publications={publications} />
+
+        <div className="mt-16 pt-10 border-t border-rush-outline-variant/20 flex flex-wrap gap-6">
+          {siteConfig.links.googleScholarProfiles.map((profile) => (
+            <a
+              key={`footer-${profile.url}`}
+              href={profile.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 font-mono text-xs uppercase tracking-widest text-rush-teal hover:text-rush-dark-green transition-colors underline underline-offset-4"
+            >
+              Google Scholar — {profile.name}{" "}
+              <ExternalLink className="h-3 w-3" aria-hidden="true" />
+            </a>
+          ))}
+        </div>
       </div>
     </main>
   );
